@@ -1,0 +1,6 @@
+login user 
+
+if login user is seller then he can add product otherwise can add product
+
+for adding prooducts, have an collection for category, and seller have premade store,
+categry te brand name and branch image thakbe
