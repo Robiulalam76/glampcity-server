@@ -113,12 +113,15 @@ const loginUser = async (req, res) => {
 
   try {
     const user = await User.findOne({ email: req.body.email });
+    // console.log(user);
 
-    if (
-      user &&
-      user.password &&
-      bcrypt.compareSync(req.body.password, user.password)
-    ) {
+    if (user?.verified === "false") {
+      res.status(401).send({
+        message: "unverified account Please Verify Your Account",
+      })
+    }
+
+    if (user?.verified === "true" && user && user.password && bcrypt.compareSync(req.body.password, user.password)) {
       const token = signInToken(user);
       res.send({
         token,
@@ -273,6 +276,8 @@ const getAllUsers = async (req, res) => {
 };
 
 
+
+// get user info by token verified => email
 const getUserInfo = async (req, res) => {
   try {
     const user = await User.findOne({ email: req?.user?.email })
@@ -283,6 +288,8 @@ const getUserInfo = async (req, res) => {
   }
 };
 
+
+// get user by id
 const getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -322,6 +329,8 @@ const updateUser = async (req, res) => {
   }
 };
 
+
+// delete user
 const deleteUser = (req, res) => {
   User.deleteOne({ _id: req.params.id }, (err) => {
     if (err) {
@@ -336,6 +345,8 @@ const deleteUser = (req, res) => {
   });
 };
 
+
+// patch user info by user id
 const patchUserInfoById = async (req, res) => {
   try {
     const id = req.params.id;
