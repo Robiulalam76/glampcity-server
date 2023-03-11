@@ -13,7 +13,7 @@ const signInToken = (user) => {
       phone: user.phone,
       image: user.image,
     },
-    process.env.JWT_SECRET,
+    '6d26f2079e3afdfc7508685c1684ef815cc7d1430183702eaa5e055738deaea18f20f0603d436630886e7c5b82aa3e40d971855efea4f37a7f2370ecd05b432d',
     {
       expiresIn: '2d',
     }
@@ -37,7 +37,7 @@ const isAuth = async (req, res, next) => {
   const { authorization } = req.headers;
   try {
     const token = authorization.split(' ')[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, '6d26f2079e3afdfc7508685c1684ef815cc7d1430183702eaa5e055738deaea18f20f0603d436630886e7c5b82aa3e40d971855efea4f37a7f2370ecd05b432d');
     req.user = decoded;
     next();
   } catch (err) {

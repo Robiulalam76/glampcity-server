@@ -39,9 +39,15 @@ const verifyEmailAddress = async (req, res) => {
 };
 
 const registerUser = async (req, res) => {
-  // const token = req.params.token;
-  // const { name, email, password } = jwt.decode(token);
-  const { name, email, password } = req.body;
+  const {
+    name,
+    email,
+    password,
+    company,
+    country,
+    phone,
+    role,
+  } = req.body;
   const isAdded = await User.findOne({ email: email });
 
   if (isAdded) {
@@ -54,30 +60,52 @@ const registerUser = async (req, res) => {
     });
   }
 
-  if (token) {
-    jwt.verify(token, process.env.JWT_SECRET_FOR_VERIFY, (err, decoded) => {
-      if (err) {
-        return res.status(401).send({
-          message: "Token Expired, Please try again!",
-        });
-      } else {
-        const newUser = new User({
-          name,
-          email,
-          password: bcrypt.hashSync(password),
-        });
-        newUser.save();
-        const token = signInToken(newUser);
-        res.send({
-          token,
-          _id: newUser._id,
-          name: newUser.name,
-          email: newUser.email,
-          message: "Email Verified, Please Login Now!",
-        });
-      }
+  else {
+    const newUser = new User({
+      name,
+      email,
+      company,
+      country,
+      phone,
+      role,
+      password: bcrypt.hashSync(password),
+    });
+    newUser.save();
+    const token = signInToken({ name, email, password: bcrypt.hashSync(password) });
+    res.send({
+      token,
+      _id: newUser._id,
+      name: newUser.name,
+      email: newUser.email,
+      message: "Email Verified, Please Login Now!",
     });
   }
+  // console.log(req.body);
+
+  // if (token) {
+  //   jwt.verify(token, process.env.JWT_SECRET_FOR_VERIFY, (err, decoded) => {
+  //     if (err) {
+  //       return res.status(401).send({
+  //         message: "Token Expired, Please try again!",
+  //       });
+  //     } else {
+  //       const newUser = new User({
+  //         name,
+  //         email,
+  //         password: bcrypt.hashSync(password),
+  //       });
+  //       newUser.save();
+  //       const token = signInToken(newUser);
+  //       res.send({
+  //         token,
+  //         _id: newUser._id,
+  //         name: newUser.name,
+  //         email: newUser.email,
+  //         message: "Email Verified, Please Login Now!",
+  //       });
+  //     }
+  //   });
+  // }
 };
 
 const loginUser = async (req, res) => {
@@ -244,6 +272,17 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+
+const getUserInfo = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req?.user?.email })
+    // console.log(user);
+    res.send(user);
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
 const getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -297,6 +336,35 @@ const deleteUser = (req, res) => {
   });
 };
 
+const patchUserInfoById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const patchData = req.body;
+    const user = await User.findById({ _id: id });
+
+    if (user) {
+      console.log(req.body, id);
+      const result = await User.updateOne(
+        { _id: id },
+        { $set: patchData },
+        { runValidators: true }
+      );
+      res.status(200).json({
+        status: "success",
+        message: "Update successfully",
+        data: result,
+      });
+    }
+
+  } catch (error) {
+    res.status(400).json({
+      status: "error",
+      message: "upadate couldn't success",
+      error: error.message,
+    });
+  }
+}
+
 module.exports = {
   loginUser,
   registerUser,
@@ -309,4 +377,6 @@ module.exports = {
   getUserById,
   updateUser,
   deleteUser,
+  patchUserInfoById,
+  getUserInfo,
 };

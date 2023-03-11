@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    company: {
+      type: String,
+      required: false,
+    },
     city: {
       type: String,
       required: false,
@@ -33,10 +37,32 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    role: {
+      type: String,
+      enum: ['seller', 'buyer', 'both'],
+      default: 'seller'
+    },
     password: {
       type: String,
-      required: false,
+      required: true,
     },
+    verified: {
+      type: String,
+      enum: ['true', 'false'],
+      default: false
+    },
+    describeYourBusiness: {
+      type: []
+    },
+    reverentSubCategories: {
+      electronics: { type: String },
+      tents: { type: String },
+      autoAndTransportation: { type: String },
+    },
+    supplier: {
+      type: []
+    },
+
   },
   {
     timestamps: true,
