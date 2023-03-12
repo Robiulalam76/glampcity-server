@@ -115,7 +115,7 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     // console.log(user);
 
-    if (user?.verified === "false") {
+    if (user?.verified === "false" && user && user.password && bcrypt.compareSync(req.body.password, user.password)) {
       res.status(401).send({
         message: "unverified account Please Verify Your Account",
       })
@@ -145,7 +145,8 @@ const loginUser = async (req, res) => {
 };
 
 const forgetPassword = async (req, res) => {
-  const isAdded = await User.findOne({ email: req.body.verifyEmail });
+  // console.log(req.body);
+  const isAdded = await User.findOne({ email: req.body.email });
   if (!isAdded) {
     return res.status(404).send({
       message: "User Not found with this email!",
@@ -204,13 +205,10 @@ const changePassword = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     if (!user.password) {
       return res.send({
-        message:
-          "For change password,You need to sign in with email & password!",
+        message: "For change password,You need to sign in with email & password!",
       });
-    } else if (
-      user &&
-      bcrypt.compareSync(req.body.currentPassword, user.password)
-    ) {
+    }
+    else if (user && bcrypt.compareSync(req.body.password, user.password)) {
       user.password = bcrypt.hashSync(req.body.newPassword);
       await user.save();
       res.send({
