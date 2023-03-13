@@ -9,10 +9,11 @@ const {
   updateCategory,
   updateStatus,
   deleteCategory,
+  deleteSubCategory,
 } = require("../controller/categoryController");
 
 //add a category
-router.post("/add", addCategory);
+router.post("/add/:id", addCategory);
 
 //add all category
 router.post("/all", addAllCategory);
@@ -34,5 +35,8 @@ router.put("/status/:id", updateStatus);
 
 //delete a category
 router.delete("/:id", deleteCategory);
+
+//Remove a sub category
+router.put("/sub-category/:id", deleteSubCategory);
 
 module.exports = router;

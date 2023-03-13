@@ -42,8 +42,8 @@ const adminSchema = new mongoose.Schema(
     role: {
       type: String,
       required: false,
-      enum: ["user", "admin", "seller"],
-      default: "user",
+      enum: ["buyer", "admin", "seller"],
+      default: "buyer",
     },
     joiningData: {
       type: Date,

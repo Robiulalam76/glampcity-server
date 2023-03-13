@@ -1,8 +1,17 @@
+const Admin = require("../models/Admin");
 const Category = require("../models/Category");
 
 const addCategory = async (req, res) => {
   try {
+    const admin = await Admin.findOne({ _id: req.params.id })
     const newCategory = new Category(req.body);
+    if (admin?.role === 'admin') {
+      newCategory.approved = "true"
+      newCategory.status = 'Show'
+    }
+
+    // console.log(newCategory);
+
     await newCategory.save();
     res.status(200).send({
       message: "Category Added Successfully!",
@@ -71,8 +80,8 @@ const updateCategory = async (req, res) => {
       category.parent = req.body.parent;
       // category.slug = req.body.slug;
       category.type = req.body.type;
-      category.icon = req.body.icon;
-      category.children = req.body.children;
+      // category.icon = req.body.icon;
+      category.subCategory = req.body.subCategory;
       await category.save();
       res.send({ message: "Category Updated Successfully!" });
     }
@@ -105,6 +114,17 @@ const updateStatus = (req, res) => {
   );
 };
 
+const deleteSubCategory = async (req, res) => {
+  const id = req.params.id
+
+  try {
+    const category = await Category.findById({ _id: id })
+    console.log(category);
+  } catch (error) {
+
+  }
+}
+
 const deleteCategory = (req, res) => {
   Category.deleteOne({ _id: req.params.id }, (err) => {
     if (err) {
@@ -136,6 +156,8 @@ const deleteCategory = (req, res) => {
   //     }
   //   }
   // );
+
+
 };
 
 module.exports = {
@@ -146,5 +168,6 @@ module.exports = {
   getCategoryById,
   updateCategory,
   updateStatus,
+  deleteSubCategory,
   deleteCategory,
 };

@@ -5,28 +5,34 @@ const categorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  subCategory: [
+    {
+      name: { type: String },
+      status: { type: String, enum: ["Show", "Hide"], default: "Show", },
+    }
+  ],
+
   slug: {
     type: String,
     required: false,
   },
-  // product_name: {
-  //   type: String,
-  //   required: true,
-  // },
-  price: {
-    type: String,
-    required: true,
-  },
+
   // image: {
   //   type: String,
   //   required: true,
   // },
-  // children: [{}],
-  // status: {
-  //   type: String,
-  //   enum: ["Show", "Hide"],
-  //   default: "Show",
-  // },
+
+  approved: {
+    type: String,
+    enum: ['false', 'true'],
+    default: false
+  },
+
+  status: {
+    type: String,
+    enum: ["Show", "Hide"],
+    default: "Hide",
+  },
 });
 
 const Category = mongoose.model("Category", categorySchema);

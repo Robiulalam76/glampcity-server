@@ -12,17 +12,20 @@ const {
   getUserById,
   updateUser,
   deleteUser,
+  patchUserInfoById,
+  getUserInfo,
 } = require('../controller/userController');
 const {
   passwordVerificationLimit,
   emailVerificationLimit,
 } = require('../config/others');
+const { isAuth } = require('../config/auth');
 
 //verify email
 router.post('/verify-email', emailVerificationLimit, verifyEmailAddress);
 
 //register a user
-router.post('/register/:token', registerUser);
+router.post('/register', registerUser);
 
 //login a user
 router.post('/login', loginUser);
@@ -40,7 +43,7 @@ router.put('/reset-password', resetPassword);
 router.post('/change-password', changePassword);
 
 //get all user
-router.get('/', getAllUsers);
+router.get('/allUsers', getAllUsers);
 
 //get a user
 router.get('/:id', getUserById);
@@ -50,5 +53,13 @@ router.put('/:id', updateUser);
 
 //delete a user
 router.delete('/:id', deleteUser);
+
+//-------------------
+
+//update a user info
+router.patch('/:id', patchUserInfoById);
+
+// get userinfo by token
+router.get('/', isAuth, getUserInfo);
 
 module.exports = router;

@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const { signInToken, tokenForVerify, sendEmail } = require("../config/auth");
+const Admin = require("../models/Admin");
 
 const verifyEmailAddress = async (req, res) => {
   const isAdded = await User.findOne({ email: req.body.email });
@@ -39,10 +40,18 @@ const verifyEmailAddress = async (req, res) => {
 };
 
 const registerUser = async (req, res) => {
-  // const token = req.params.token;
-  // const { name, email, password } = jwt.decode(token);
-  const { name, email, password } = req.body;
+  const {
+    name,
+    email,
+    password,
+    company,
+    country,
+    phone,
+    role,
+  } = req.body;
   const isAdded = await User.findOne({ email: email });
+
+  console.log(req.body, isAdded);
 
   if (isAdded) {
     const token = signInToken(isAdded);
@@ -54,43 +63,38 @@ const registerUser = async (req, res) => {
     });
   }
 
-  if (token) {
-    jwt.verify(token, process.env.JWT_SECRET_FOR_VERIFY, (err, decoded) => {
-      if (err) {
-        return res.status(401).send({
-          message: "Token Expired, Please try again!",
-        });
-      } else {
-        const newUser = new User({
-          name,
-          email,
-          password: bcrypt.hashSync(password),
-        });
-        newUser.save();
-        const token = signInToken(newUser);
-        res.send({
-          token,
-          _id: newUser._id,
-          name: newUser.name,
-          email: newUser.email,
-          message: "Email Verified, Please Login Now!",
-        });
-      }
+  else {
+    const newUser = new User({
+      name,
+      email,
+      company,
+      country,
+      phone,
+      role,
+      password: bcrypt.hashSync(password),
+    });
+    newUser.save();
+    const token = signInToken({ name, email, password: bcrypt.hashSync(password) });
+    res.send({
+      token,
+      _id: newUser._id,
+      name: newUser.name,
+      email: newUser.email,
+      message: "Email Verified, Please Login Now!",
     });
   }
 };
 
+
+// login with email and password
 const loginUser = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
 
   try {
     const user = await User.findOne({ email: req.body.email });
+    console.log(user);
 
-    if (
-      user &&
-      user.password &&
-      bcrypt.compareSync(req.body.password, user.password)
-    ) {
+    if (user && user?.verified === 'true' && user.password && bcrypt.compareSync(req.body.password, user.password)) {
       const token = signInToken(user);
       res.send({
         token,
@@ -101,7 +105,14 @@ const loginUser = async (req, res) => {
         phone: user.phone,
         image: user.image,
       });
-    } else {
+    }
+    else if (user?.verified === "false") {
+      res.status(201).send({
+        login: false,
+        message: "unverified account Please Verify Your Account",
+      })
+    }
+    else {
       res.status(401).send({
         message: "Invalid user or password!",
       });
@@ -283,18 +294,69 @@ const updateUser = async (req, res) => {
   }
 };
 
-const deleteUser = (req, res) => {
-  User.deleteOne({ _id: req.params.id }, (err) => {
-    if (err) {
-      res.status(500).send({
-        message: err.message,
-      });
-    } else {
-      res.status(200).send({
-        message: "User Deleted Successfully!",
+// get user info by token verified => email
+const getUserInfo = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req?.user?.email })
+    // console.log(user);
+    res.send(user);
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+
+// patch user info by user id
+const patchUserInfoById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const patchData = req.body;
+    const user = await User.findById({ _id: id });
+
+    if (user) {
+      console.log(req.body, id);
+      const result = await User.updateOne(
+        { _id: id },
+        { $set: patchData },
+        { runValidators: true }
+      );
+      res.status(200).json({
+        status: "success",
+        message: "Update successfully",
+        data: result,
       });
     }
-  });
+
+  } catch (error) {
+    res.status(400).json({
+      status: "error",
+      message: "upadate couldn't success",
+      error: error.message,
+    });
+  }
+}
+
+const deleteUser = async (req, res) => {
+  const admin = await Admin.findOne({ _id: req.body.adminId })
+  if (admin?.role === 'admin') {
+    User.deleteOne({ _id: req.params.id }, (err) => {
+      if (err) {
+        res.status(500).send({
+          message: err.message,
+        });
+      } else {
+        res.status(200).send({
+          message: "User Deleted Successfully!",
+        });
+      }
+    });
+  }
+  else {
+    res.status(200).send({
+      message: "User Delete for Needed Admin",
+    });
+  }
+
 };
 
 module.exports = {
@@ -309,4 +371,6 @@ module.exports = {
   getUserById,
   updateUser,
   deleteUser,
+  patchUserInfoById,
+  getUserInfo,
 };
