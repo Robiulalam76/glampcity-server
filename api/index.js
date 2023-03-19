@@ -14,6 +14,7 @@ const adminRoutes = require("../routes/adminRoutes");
 const orderRoutes = require("../routes/orderRoutes");
 const userOrderRoutes = require("../routes/userOrderRoutes");
 const categoryRoutes = require("../routes/categoryRoutes");
+const newArrivalRoutes = require("../routes/newArrivalRoutes");
 const storeRoutes = require("../routes/storeRoutes");
 const addressRoutes = require("../routes/addressRoutes");
 const couponRoutes = require("../routes/couponRoutes");
@@ -23,6 +24,11 @@ const blogRoutes = require("../routes/blogRoutes");
 const ticketRoutes = require("../routes/ticketRoutes");
 const historyRoutes = require("../routes/historyRoutes");
 const cookieSession = require("cookie-session");
+
+// Conversation Routes
+const chatRoutes = require("../routes/conversationRoutes/chatRoutes");
+const messageRoutes = require("../routes/conversationRoutes/messageRoutes");
+
 
 const withDrawRoutes = require("../routes/withDrawRoutes");
 
@@ -54,9 +60,14 @@ app.get("/", (req, res) => {
   res.send("App works properly!");
 });
 
+
+// Conversations Routes
+app.use("/api/chat/", chatRoutes);
+app.use("/api/message/", messageRoutes);
+
 //this for route will need for store front, also for admin dashboard
 app.use("/api/products/", productRoutes);
-app.use("/api/category/new-arrival", categoryRoutes);
+app.use("/api/category/new-arrival", newArrivalRoutes);
 app.use("/api/category/", categoryRoutes);
 app.use("/api/coupon/", couponRoutes);
 app.use("/api/user/", userRoutes);

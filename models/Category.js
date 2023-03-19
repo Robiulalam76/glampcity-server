@@ -1,26 +1,25 @@
 const mongoose = require("mongoose");
 
 const categorySchema = new mongoose.Schema({
-  category: {
+  parent: {
     type: String,
     required: true,
   },
-  subCategory: [
-    {
-      name: { type: String },
-      status: { type: String, enum: ["Show", "Hide"], default: "Show", },
-    }
-  ],
+  children: [],
 
   slug: {
     type: String,
     required: false,
   },
 
-  // image: {
-  //   type: String,
-  //   required: true,
-  // },
+  image: {
+    type: String,
+    required: true,
+  },
+
+  type: {
+    type: String
+  },
 
   approved: {
     type: String,

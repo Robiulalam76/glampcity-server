@@ -194,18 +194,32 @@ const getProductBySlug = async (req, res) => {
   }
 };
 
-const getProductByParent = async (req, res) => {
-  console.log("Params for parent: ", req.params.parent);
-  try {
-    const product = await Product.findOne({ parent: "Custome" });
 
-    res.status(200).send({ "all prpducts": "data" });
+const getProductsByParent = async (req, res) => {
+  console.log("Params for parent: ", req.params?.parent);
+  try {
+    const products = await Product.find({ parent: req.params?.parent });
+
+    res.status(200).send(products);
   } catch (err) {
     res.status(500).send({
       message: `Slug problem, ${err.message}`,
     });
   }
 };
+
+// const getProductByParent = async (req, res) => {
+//   console.log("Params for parent: ", req.params.parent);
+//   try {
+//     const product = await Product.findOne({ parent: "Custome" });
+
+//     res.status(200).send({ "all prpducts": "data" });
+//   } catch (err) {
+//     res.status(500).send({
+//       message: `Slug problem, ${err.message}`,
+//     });
+//   }
+// };
 
 const getProductById = async (req, res) => {
   try {
@@ -322,6 +336,19 @@ const deleteProduct = (req, res) => {
   });
 };
 
+
+const getLatestProducts = async (req, res) => {
+  const from = parseInt(req.params.from)
+  const to = parseInt(req.params.to)
+  // console.log(from, to  );
+  try {
+    const result = await Product.find().skip(from).limit(to).sort({ _id: -1 })
+    res.status(200).send(result)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+};
+
 // @desc Fetch a single product
 // @route GET /api/products/search/:search
 // @access Public.
@@ -360,9 +387,10 @@ module.exports = {
   updateProduct,
   updateStatus,
   deleteProduct,
-  getProductByParent,
+  getProductsByParent,
   getSearchProducts,
   Stripehandler,
   createProductReview,
+  getLatestProducts,
   // Stripehandlerold,
 };

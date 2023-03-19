@@ -298,7 +298,7 @@ const updateUser = async (req, res) => {
 const getUserInfo = async (req, res) => {
   try {
     const user = await User.findOne({ email: req?.user?.email })
-    // console.log(user);
+    console.log(user);
     res.send(user);
   } catch (err) {
     res.status(500).send({ message: err.message });

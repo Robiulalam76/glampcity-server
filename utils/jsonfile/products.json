@@ -1,102 +1,82 @@
 [
     {
-        "categoryId": "640ee50252b1a8266c6e19f4",
-        "category": "books",
-        "subCategoryId": "640ee50252b1a8266c6e19f5",
-        "subCategory": "Islamic",
-        "title": "Freshmaker Wipes",
-        "slug": "freshmaker-wipes",
-        "parent": "Baby Care",
-        "children": "Baby Accessories",
-        "image": "https://i.ibb.co/sWBMfVP/Freshmaker-Baby-Wet-Wipes-With-Cover-72pcs.jpg",
+        "title": "Harmony Orange Soap",
+        "slug": "harmony-oranges-soap",
+        "parent": "Beauty & Health",
+        "children": "Bath",
+        "image": "https://i.ibb.co/26DbDXx/Harmony-Orange-Satsuma-Soap-70g.jpg",
         "discount": 0,
-        "unit": "72pcs",
+        "unit": "70g",
         "quantity": 100,
         "type": "Health Care",
         "tag": [
-            "baby care",
-            "baby accessories"
+            "bath",
+            "soap"
         ],
-        "description": "Baby Products are products intended to be used on infants and children under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
     },
     {
-        "categoryId": "640ee50252b1a8266c6e19f4",
-        "category": "books",
-        "subCategoryId": "640ee50252b1a8266c6e19f5",
-        "subCategory": "Islamic",
-        "title": "Himalaya Powder",
-        "slug": "himalaya-powder",
-        "parent": "Baby Care",
-        "children": "Baby Accessories",
-        "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg",
+        "title": "Neem Original Soap",
+        "slug": "neem-original-soap",
+        "parent": "Beauty & Health",
+        "children": "Bath",
+        "image": "https://i.ibb.co/YfJTLV4/Neem-Original-Honey-Turmeric-Soap-75g.jpg",
         "discount": 0,
-        "unit": "100g",
+        "unit": "75g",
         "quantity": 100,
         "type": "Health Care",
         "tag": [
-            "baby care",
-            "baby accessories"
+            "bath",
+            "soap"
         ],
-        "description": "Baby Products are products intended to be used on infants and children under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
     },
     {
-        "categoryId": "640ee50252b1a8266c6e19f4",
-        "category": "books",
-        "subCategoryId": "640ee50252b1a8266c6e19f5",
-        "subCategory": "Islamic",
-        "title": "Huggies Diaper",
-        "slug": "huggies-diaper",
-        "parent": "Baby Care",
-        "children": "Baby Accessories",
-        "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
+        "title": "Nivea Soap",
+        "slug": "nivea-soap",
+        "parent": "Beauty & Health",
+        "children": "Bath",
+        "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg",
         "discount": 0,
-        "unit": "36pcs",
+        "unit": "75g",
+        "quantity": 10,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    },
+    {
+        "title": "Sandalina Soap",
+        "slug": "sandalina-soap",
+        "parent": "Beauty & Health",
+        "children": "Bath",
+        "image": "https://i.ibb.co/pRxDb6B/Sandalina-Soap-125-Gm.jpg",
+        "discount": 0,
+        "unit": "125gm",
         "quantity": 100,
         "type": "Health Care",
         "tag": [
-            "baby care",
-            "baby accessories"
+            "bath",
+            "soap"
         ],
-        "description": "Baby Products are products intended to be used on infants and children under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
     },
     {
-        "categoryId": "640ee50252b1a8266c6e19f4",
-        "category": "books",
-        "subCategoryId": "640ee50252b1a8266c6e19f5",
-        "subCategory": "Islamic",
-        "title": "Huggies-W-Pant",
-        "slug": "huggies-w-pant",
-        "parent": "Baby Care",
-        "children": "Baby Accessories",
-        "image": "https://i.ibb.co/TmQFK7T/Huggies-W-Pant-XXL-15-25kg-24-Pcs.jpg",
+        "title": "Savlon Soap",
+        "slug": "savlon-soap",
+        "parent": "Beauty & Health",
+        "children": "Bath",
+        "image": "https://i.ibb.co/XL8Dmw5/Savlon-Fresh-Antiseptic-Soap-100-Gm.jpg",
         "discount": 0,
-        "unit": "24pcs",
+        "unit": "100gm",
         "quantity": 100,
         "type": "Health Care",
         "tag": [
-            "baby care",
-            "baby accessories"
+            "bath",
+            "soap"
         ],
-        "description": "Baby Products are products intended to be used on infants and children under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
-    },
-    {
-        "categoryId": "640ee50252b1a8266c6e19f4",
-        "category": "books",
-        "subCategoryId": "640ee50252b1a8266c6e19f5",
-        "subCategory": "Islamic",
-        "title": "Huggies Pant",
-        "slug": "huggies-pant",
-        "parent": "Baby Care",
-        "children": "Baby Accessories",
-        "image": "https://i.ibb.co/q7Lc0z6/Huggies-Wonder-Pant-L-9-14kg-32-Pcs.jpg",
-        "discount": 0,
-        "unit": "32pcs",
-        "quantity": 0,
-        "type": "Health Care",
-        "tag": [
-            "baby care",
-            "baby accessories"
-        ],
-        "description": "Baby Products are products intended to be used on infants and children under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
     }
 ]

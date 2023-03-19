@@ -6,11 +6,21 @@ const storeSchema = mongoose.Schema(
     //   type: mongoose.Schema.Types.ObjectId,
     //   ref: "User",
     //   required: true,
-    // },
+    // }
 
-    user: {
+    // user: {
+    //   type: String,
+    //   required: true,
+    // }
+
+    verified: {
       type: String,
-      required: true,
+      enum: ['true', 'false'],
+      default: false
+    },
+    username: {
+      type: String,
+      required: true
     },
     userID: { type: String, required: false },
 

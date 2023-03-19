@@ -15,9 +15,10 @@ const {
   updateStatus,
   deleteProduct,
   getSearchProducts,
-  getProductByParent,
+  getProductsByParent,
   Stripehandler,
   createProductReview,
+  getLatestProducts
 } = require("../controller/productController");
 
 //add a product
@@ -42,6 +43,10 @@ router.get("/discount/all", getDiscountedProducts);
 //get all products
 router.get("/", getAllProducts);
 
+
+//get all latest products
+router.get("/getLatestProducts/:from/:to", getLatestProducts);
+
 //get all stock out products
 router.get("/stock-out", getStockOutProducts);
 
@@ -50,8 +55,9 @@ router.get("/:slug", getProductBySlug);
 
 // search
 
-//get a product by slug
-router.get("/cat/:parent", getProductByParent);
+//get a product by parent
+// router.get("/cat/:parent", getProductByParent);
+router.get("/cat/:parent", getProductsByParent);
 
 router.get("/search/:searchtitle", getSearchProducts);
 //update a product

@@ -63,7 +63,7 @@ const newArrivalProductSchema = new mongoose.Schema(
             type: String,
             required: false,
         },
-        // tag: [String],
+        tag: [String],
         // reviews: [reviewSchema],
 
         flashSale: {
