@@ -9,12 +9,13 @@ const authRoute = require("../routes/addressRoutes");
 
 const connectDB = require("../config/db");
 const productRoutes = require("../routes/productRoutes");
+const wishlistRoutes = require("../routes/wishlistRoutes");
 const userRoutes = require("../routes/userRoutes");
 const adminRoutes = require("../routes/adminRoutes");
 const orderRoutes = require("../routes/orderRoutes");
 const userOrderRoutes = require("../routes/userOrderRoutes");
 const categoryRoutes = require("../routes/categoryRoutes");
-const newArrivalRoutes = require("../routes/newArrivalRoutes");
+const popularProductRoutes = require("../routes/popularProductRoutes");
 const storeRoutes = require("../routes/storeRoutes");
 const addressRoutes = require("../routes/addressRoutes");
 const couponRoutes = require("../routes/couponRoutes");
@@ -67,7 +68,8 @@ app.use("/api/message/", messageRoutes);
 
 //this for route will need for store front, also for admin dashboard
 app.use("/api/products/", productRoutes);
-app.use("/api/category/new-arrival", newArrivalRoutes);
+app.use("/api/wishlist/", wishlistRoutes);
+app.use("/api/popular-product", popularProductRoutes);
 app.use("/api/category/", categoryRoutes);
 app.use("/api/coupon/", couponRoutes);
 app.use("/api/user/", userRoutes);

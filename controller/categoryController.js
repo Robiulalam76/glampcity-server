@@ -40,9 +40,7 @@ const addAllCategory = async (req, res) => {
 
 const getShowingCategory = async (req, res) => {
   try {
-    const categories = await Category.find({ status: "Show" }).sort({
-      _id: -1,
-    });
+    const categories = await Category.find({ status: "Show" }).sort({ _id: -1, });
     res.send(categories);
   } catch (err) {
     res.status(500).send({

@@ -196,9 +196,9 @@ const getProductBySlug = async (req, res) => {
 
 
 const getProductsByParent = async (req, res) => {
-  console.log("Params for parent: ", req.params?.parent);
+  console.log("Params for slug: ", req.params?.slug);
   try {
-    const products = await Product.find({ parent: req.params?.parent });
+    const products = await Product.find({ slug: req.params?.slug });
 
     res.status(200).send(products);
   } catch (err) {
@@ -338,11 +338,8 @@ const deleteProduct = (req, res) => {
 
 
 const getLatestProducts = async (req, res) => {
-  const from = parseInt(req.params.from)
-  const to = parseInt(req.params.to)
-  // console.log(from, to  );
   try {
-    const result = await Product.find().skip(from).limit(to).sort({ _id: -1 })
+    const result = await Product.find().skip(0).limit(10).sort({ _id: -1 })
     res.status(200).send(result)
   } catch (error) {
     res.status(500).json({ message: error.message })

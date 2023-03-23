@@ -28,7 +28,11 @@ const productSchema = new mongoose.Schema(
     },
     slug: {
       type: String,
-      required: false,
+      required: true,
+    },
+    titleSlug: {
+      type: String,
+      required: true,
     },
     unit: {
       type: String,

@@ -1,7 +1,7 @@
 [
     {
         "title": "Harmony Orange Soap",
-        "slug": "harmony-oranges-soap",
+        "slug": "beauty-&-health",
         "parent": "Beauty & Health",
         "children": "Bath",
         "image": "https://i.ibb.co/26DbDXx/Harmony-Orange-Satsuma-Soap-70g.jpg",
@@ -17,7 +17,7 @@
     },
     {
         "title": "Neem Original Soap",
-        "slug": "neem-original-soap",
+        "slug": "beauty-&-health",
         "parent": "Beauty & Health",
         "children": "Bath",
         "image": "https://i.ibb.co/YfJTLV4/Neem-Original-Honey-Turmeric-Soap-75g.jpg",
@@ -33,7 +33,7 @@
     },
     {
         "title": "Nivea Soap",
-        "slug": "nivea-soap",
+        "slug": "beauty-&-health",
         "parent": "Beauty & Health",
         "children": "Bath",
         "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg",
@@ -49,7 +49,7 @@
     },
     {
         "title": "Sandalina Soap",
-        "slug": "sandalina-soap",
+        "slug": "beauty-&-health",
         "parent": "Beauty & Health",
         "children": "Bath",
         "image": "https://i.ibb.co/pRxDb6B/Sandalina-Soap-125-Gm.jpg",
@@ -65,7 +65,7 @@
     },
     {
         "title": "Savlon Soap",
-        "slug": "savlon-soap",
+        "slug": "beauty-&-health",
         "parent": "Beauty & Health",
         "children": "Bath",
         "image": "https://i.ibb.co/XL8Dmw5/Savlon-Fresh-Antiseptic-Soap-100-Gm.jpg",
@@ -78,5 +78,490 @@
             "soap"
         ],
         "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    }
+]
+
+
+[
+    {
+        "title": "Harmony Orange Soap",
+        "titleSlug": "harmony-orange-soap",
+        "slug": "new-arrival",
+        "parent": "New Arrival",
+        "children": "Bath",
+        "image": "https://i.ibb.co/26DbDXx/Harmony-Orange-Satsuma-Soap-70g.jpg",
+        "discount": 0,
+        "unit": "70g",
+        "quantity": 100,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    },
+    {
+        "title": "Neem Original Soap",
+        "titleSlug": "neem-original-soap",
+        "slug": "new-arrival",
+        "parent": "New Arrival",
+        "children": "Bath",
+        "image": "https://i.ibb.co/YfJTLV4/Neem-Original-Honey-Turmeric-Soap-75g.jpg",
+        "discount": 0,
+        "unit": "75g",
+        "quantity": 100,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    },
+    {
+        "title": "Nivea Soap",
+        "titleSlug": "nivea-soap",
+        "slug": "new-arrival",
+        "parent": "New Arrival",
+        "children": "Bath",
+        "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg",
+        "discount": 0,
+        "unit": "75g",
+        "quantity": 10,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    },
+    {
+        "title": "Sandalina Soap",
+        "titleSlug": "sandalina-soap",
+        "slug": "new-arrival",
+        "parent": "New Arrival",
+        "children": "Bath",
+        "image": "https://i.ibb.co/pRxDb6B/Sandalina-Soap-125-Gm.jpg",
+        "discount": 0,
+        "unit": "125gm",
+        "quantity": 100,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    },
+    {
+        "title": "Savlon Soap",
+        "titleSlug": "Savlon Soap",
+        "slug": "new-arrival",
+        "parent": "New Arrival",
+        "children": "Bath",
+        "image": "https://i.ibb.co/XL8Dmw5/Savlon-Fresh-Antiseptic-Soap-100-Gm.jpg",
+        "discount": 0,
+        "unit": "100gm",
+        "quantity": 100,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    },
+    {
+        "title": "wheel Powder",
+        "titleSlug": "wheel-owder",
+        "slug": "new-arrival",
+        "parent": "New Arrival",
+        "children": "Bath",
+        "image": "https://i.ibb.co/XL8Dmw5/Savlon-Fresh-Antiseptic-Soap-100-Gm.jpg",
+        "discount": 0,
+        "unit": "100gm",
+        "quantity": 100,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    }
+]
+/// popular products
+[
+    {
+        "title": "Harmony Orange Soap",
+        "titleSlug": "harmony-orange-soap",
+        "slug": "new-arrival",
+        "productId": "641b300b44fa7ab0e898e46a",
+        "parent": "New Arrival",
+        "children": "Bath",
+        "image": "https://i.ibb.co/26DbDXx/Harmony-Orange-Satsuma-Soap-70g.jpg",
+        "discount": 0,
+        "unit": "70g",
+        "quantity": 100,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    },
+    {
+        "title": "Neem Original Soap",
+        "titleSlug": "neem-original-soap",
+        "slug": "new-arrival",
+        "productId": "641b300b44fa7ab0e898e46e",
+        "parent": "New Arrival",
+        "children": "Bath",
+        "image": "https://i.ibb.co/YfJTLV4/Neem-Original-Honey-Turmeric-Soap-75g.jpg",
+        "discount": 0,
+        "unit": "75g",
+        "quantity": 100,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    },
+    {
+        "title": "Nivea Soap",
+        "titleSlug": "nivea-soap",
+        "slug": "new-arrival",
+        "productId": "641b314d44fa7ab0e89a3be9",
+        "parent": "New Arrival",
+        "children": "Bath",
+        "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg",
+        "discount": 0,
+        "unit": "75g",
+        "quantity": 10,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    },
+    {
+        "title": "Sandalina Soap",
+        "titleSlug": "sandalina-soap",
+        "slug": "new-arrival",
+        "productId": "641b314d44fa7ab0e89a3bea",
+        "parent": "New Arrival",
+        "children": "Bath",
+        "image": "https://i.ibb.co/pRxDb6B/Sandalina-Soap-125-Gm.jpg",
+        "discount": 0,
+        "unit": "125gm",
+        "quantity": 100,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    },
+    {
+        "title": "Savlon Soap",
+        "titleSlug": "Savlon Soap",
+        "slug": "new-arrival",
+        "productId": "641b314d44fa7ab0e89a3beb",
+        "parent": "New Arrival",
+        "children": "Bath",
+        "image": "https://i.ibb.co/XL8Dmw5/Savlon-Fresh-Antiseptic-Soap-100-Gm.jpg",
+        "discount": 0,
+        "unit": "100gm",
+        "quantity": 100,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    },
+    {
+        "title": "wheel Powder",
+        "titleSlug": "wheel-owder",
+        "slug": "new-arrival",
+        "productId": "641b36c144fa7ab0e89f7ea7",
+        "parent": "New Arrival",
+        "children": "Bath",
+        "image": "https://i.ibb.co/XL8Dmw5/Savlon-Fresh-Antiseptic-Soap-100-Gm.jpg",
+        "discount": 0,
+        "unit": "100gm",
+        "quantity": 100,
+        "type": "Health Care",
+        "tag": [
+            "bath",
+            "soap"
+        ],
+        "description": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes."
+    }
+]
+///----------- products categories-----------
+[
+    {
+        "children": [
+            "Bath",
+            "Cosmetics",
+            "Oral Care",
+            "Skin Care",
+            "Body Care",
+            "Shaving Needs"
+        ],
+        "approved": "true",
+        "slug": "new-arrival",
+        "status": "Show",
+        "_id": "64158b6744fa7ab0e83f7b39",
+        "parent": "New Arrival",
+        "type": "Health Care",
+        "image": "https://i.postimg.cc/gjz1P7wx/beauty.png"
+    },
+    {
+        "children": [
+            "Fish",
+            "Meat"
+        ],
+        "approved": "true",
+        "slug": "fish-&-meat",
+        "status": "Show",
+        "_id": "640f0d0144fa7ab0e8dfc901",
+        "parent": "Fish & Meat",
+        "type": "Grocery",
+        "image": "https://i.ibb.co/y0zXYj5/carp-fish.png"
+    },
+    {
+        "children": [
+            "Dry Fruits",
+            "Fresh Fruits",
+            "Fresh Vegetable"
+        ],
+        "approved": "true",
+        "slug": "fruits-&-vegetable",
+        "status": "Show",
+        "_id": "640f0d0144fa7ab0e8dfc900",
+        "parent": "Fruits & Vegetable",
+        "type": "Grocery",
+        "image": "https://i.postimg.cc/RZ275n3f/cabbage.png"
+    },
+    {
+        "children": [
+            "Fresh Seafood"
+        ],
+        "approved": "true",
+        "slug": "fresh-seafood",
+        "status": "Show",
+        "_id": "640f0d0144fa7ab0e8dfc8ff",
+        "parent": "Fresh Seafood",
+        "type": "Grocery",
+        "image": "https://i.ibb.co/pfscwF4/shrimp.png"
+    },
+    {
+        "children": [
+            "Oil",
+            "Rice",
+            "Flour",
+            "Dry Vegetable",
+            "Spices & Mixes"
+        ],
+        "approved": "true",
+        "slug": "cooking-essentials",
+        "status": "Show",
+        "_id": "640f0d0144fa7ab0e8dfc8fe",
+        "parent": "Cooking Essentials",
+        "type": "Grocery",
+        "image": "https://i.ibb.co/hBv30Rt/frying-pan.png"
+    },
+    {
+        "children": [
+            "Bread",
+            "Cereal"
+        ],
+        "approved": "true",
+        "slug": "breakfast",
+        "status": "Show",
+        "_id": "640f0d0144fa7ab0e8dfc8fd",
+        "parent": "Breakfast",
+        "type": "Grocery",
+        "image": "https://i.ibb.co/dgPzSt7/bagel.png"
+    },
+    {
+        "children": [
+            "Tea",
+            "Water",
+            "Juice",
+            "Coffee",
+            "Energy Drinks"
+        ],
+        "approved": "true",
+        "slug": "drinks",
+        "status": "Show",
+        "_id": "640f0d0144fa7ab0e8dfc8fc",
+        "parent": "Drinks",
+        "type": "Grocery",
+        "image": "https://i.ibb.co/Dz8LKDX/soft-drink.png"
+    },
+    {
+        "children": [
+            "Dairy",
+            "Ice Cream",
+            "Butter & Ghee"
+        ],
+        "approved": "true",
+        "slug": "milk-&-dairy",
+        "status": "Show",
+        "_id": "640f0d0144fa7ab0e8dfc8fb",
+        "parent": "Milk & Dairy",
+        "type": "Grocery",
+        "image": "https://i.ibb.co/181Qpm8/milk.png"
+    },
+    {
+        "children": [
+            "Organic Food"
+        ],
+        "approved": "true",
+        "slug": "organic-food",
+        "status": "Show",
+        "_id": "640f0d0144fa7ab0e8dfc8fa",
+        "parent": "Organic Food",
+        "type": "Grocery",
+        "image": "https://i.ibb.co/xmGhNRF/apple.png"
+    },
+    {
+        "children": [
+            "Honey"
+        ],
+        "approved": "true",
+        "slug": "honey",
+        "status": "Show",
+        "_id": "640f0d0144fa7ab0e8dfc8f9",
+        "parent": "Honey",
+        "type": "Grocery",
+        "image": "https://i.postimg.cc/65JSfy6H/honey-1.png"
+    },
+    {
+        "children": [
+            "Sauces",
+            "Pickles & Condiments"
+        ],
+        "approved": "true",
+        "slug": "sauces-&-pickles",
+        "status": "Show",
+        "_id": "640f0d0144fa7ab0e8dfc8f8",
+        "parent": "Sauces & Pickles",
+        "type": "Grocery",
+        "image": "https://i.postimg.cc/mk09xvk4/chili-sauce.png"
+    },
+    {
+        "children": [
+            "Jam & Jelly"
+        ],
+        "approved": "true",
+        "slug": "jam-&-jelly",
+        "status": "Show",
+        "_id": "640f0d0144fa7ab0e8dfc8f7",
+        "parent": "Jam & Jelly",
+        "type": "Grocery",
+        "image": "https://i.postimg.cc/rmLvfsMC/strawberry-jam-1.png"
+    },
+    {
+        "children": [
+            "Chocolate",
+            "Chips & Nuts",
+            "Canned Food"
+        ],
+        "approved": "true",
+        "slug": "snacks-&-instant",
+        "status": "Show",
+        "_id": "640f0d0144fa7ab0e8dfc8f6",
+        "parent": "Snacks & Instant",
+        "type": "Grocery",
+        "image": "https://i.ibb.co/HT7c6VT/chips.png"
+    },
+    {
+        "children": [
+            "Cakes",
+            "Biscuits"
+        ],
+        "approved": "true",
+        "slug": "biscuits-&-cakes",
+        "status": "Hide",
+        "_id": "640f0d0144fa7ab0e8dfc8f5",
+        "parent": "Biscuits & Cakes",
+        "type": "Grocery",
+        "image": "https://i.postimg.cc/0jVF5Cmc/cookie.png"
+    },
+    {
+        "children": [
+            "Cleaner",
+            "Laundry",
+            "Air Freshener",
+            "Water Filter",
+            "Pest Control",
+            "Cleaning Tools"
+        ],
+        "approved": "true",
+        "slug": "household-tools",
+        "status": "Hide",
+        "_id": "640f0d0144fa7ab0e8dfc8f4",
+        "parent": "Household Tools",
+        "type": "Home Accessories",
+        "image": "https://i.ibb.co/rdY6zL0/cleaner.png"
+    },
+    {
+        "children": [
+            "Baby Food",
+            "Baby Accessories"
+        ],
+        "approved": "true",
+        "slug": "baby-care",
+        "status": "Hide",
+        "_id": "640f0d0144fa7ab0e8dfc8f3",
+        "parent": "Baby Care",
+        "type": "Health Care",
+        "image": "https://i.postimg.cc/QNqrnQBB/baby.png"
+    },
+    {
+        "children": [
+            "Cat Care",
+            "Dog Care",
+            "Bird Care"
+        ],
+        "approved": "true",
+        "slug": "pet-care",
+        "status": "Hide",
+        "_id": "640f0d0144fa7ab0e8dfc8f2",
+        "parent": "Pet Care",
+        "type": "Grocery",
+        "image": "https://i.postimg.cc/RVVzrWfg/cat.png"
+    },
+    {
+        "children": [
+            "Bath",
+            "Cosmetics",
+            "Oral Care",
+            "Skin Care",
+            "Body Care",
+            "Shaving Needs"
+        ],
+        "approved": "true",
+        "slug": "beauty-&-health",
+        "status": "Hide",
+        "_id": "640f0d0144fa7ab0e8dfc8f1",
+        "parent": "Beauty & Health",
+        "type": "Health Care",
+        "image": "https://i.postimg.cc/gjz1P7wx/beauty.png"
+    },
+    {
+        "children": [
+            "Sports",
+            "Fitness"
+        ],
+        "approved": "true",
+        "slug": "sports-&-fitness",
+        "status": "Hide",
+        "_id": "640f0d0144fa7ab0e8dfc8f0",
+        "parent": "Sports & Fitness",
+        "type": "Sports & Fitness",
+        "image": "https://i.ibb.co/qNCvxT0/dumbbell.png"
     }
 ]

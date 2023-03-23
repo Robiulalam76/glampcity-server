@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const newArrivalProductSchema = new mongoose.Schema(
+const PopularProductsSchema = new mongoose.Schema(
     {
         sku: {
             type: String,
@@ -12,7 +12,11 @@ const newArrivalProductSchema = new mongoose.Schema(
         },
         slug: {
             type: String,
-            required: false,
+            required: true,
+        },
+        titleSlug: {
+            type: String,
+            required: true,
         },
         unit: {
             type: String,
@@ -84,6 +88,6 @@ const newArrivalProductSchema = new mongoose.Schema(
     }
 );
 
-const NewArrivalProduct = mongoose.model("NewArrivalProduct", newArrivalProductSchema);
+const PopularProduct = mongoose.model("PopularProduct", PopularProductsSchema);
 
-module.exports = NewArrivalProduct;
+module.exports = PopularProduct;

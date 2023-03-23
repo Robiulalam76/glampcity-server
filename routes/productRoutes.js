@@ -45,7 +45,7 @@ router.get("/", getAllProducts);
 
 
 //get all latest products
-router.get("/getLatestProducts/:from/:to", getLatestProducts);
+router.get("/getProducts/latest", getLatestProducts);
 
 //get all stock out products
 router.get("/stock-out", getStockOutProducts);
@@ -57,7 +57,7 @@ router.get("/:slug", getProductBySlug);
 
 //get a product by parent
 // router.get("/cat/:parent", getProductByParent);
-router.get("/cat/:parent", getProductsByParent);
+router.get("/cat/:slug", getProductsByParent);
 
 router.get("/search/:searchtitle", getSearchProducts);
 //update a product
