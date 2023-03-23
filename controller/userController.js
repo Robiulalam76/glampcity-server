@@ -74,9 +74,9 @@ const registerUser = async (req, res) => {
       password: bcrypt.hashSync(password),
     });
     newUser.save();
-    const token = signInToken({ name, email, password: bcrypt.hashSync(password) });
+    // const token = signInToken({ name, email, password: bcrypt.hashSync(password) });
     res.send({
-      token,
+      success: true,
       _id: newUser._id,
       name: newUser.name,
       email: newUser.email,
@@ -98,6 +98,7 @@ const loginUser = async (req, res) => {
       const token = signInToken(user);
       res.send({
         token,
+        success: true,
         _id: user._id,
         name: user.name,
         email: user.email,
@@ -298,7 +299,7 @@ const updateUser = async (req, res) => {
 const getUserInfo = async (req, res) => {
   try {
     const user = await User.findOne({ email: req?.user?.email })
-    console.log(user);
+    // console.log(user);
     res.send(user);
   } catch (err) {
     res.status(500).send({ message: err.message });
