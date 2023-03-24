@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const PopularProductsSchema = new mongoose.Schema(
+const TopRankingProductsSchema = new mongoose.Schema(
     {
         productId: {
             type: String,
@@ -92,6 +92,6 @@ const PopularProductsSchema = new mongoose.Schema(
     }
 );
 
-const PopularProduct = mongoose.model("PopularProduct", PopularProductsSchema);
+const TopRankingProduct = mongoose.model("TopRankingProduct", TopRankingProductsSchema);
 
-module.exports = PopularProduct;
+module.exports = TopRankingProduct;

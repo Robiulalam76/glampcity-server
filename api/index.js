@@ -19,7 +19,9 @@ const orderRoutes = require("../routes/orderRoutes");
 const userOrderRoutes = require("../routes/userOrderRoutes");
 const categoryRoutes = require("../routes/categoryRoutes");
 const popularProductRoutes = require("../routes/popularProductRoutes");
+const topRaningProductRoutes = require("../routes/topRankingProductRoutes");
 const storeRoutes = require("../routes/storeRoutes");
+
 const addressRoutes = require("../routes/addressRoutes");
 const couponRoutes = require("../routes/couponRoutes");
 const uploadAWSRoutes = require("../routes/uploadAWSRoutes");
@@ -75,6 +77,8 @@ app.use("/api/wishlist/", wishlistRoutes);
 app.use("/api/cartProduct/", cartProductRoutes);
 
 app.use("/api/popular-product", popularProductRoutes);
+app.use("/api/top-ranking-product", topRaningProductRoutes);
+
 app.use("/api/category/", categoryRoutes);
 app.use("/api/coupon/", couponRoutes);
 app.use("/api/user/", userRoutes);
