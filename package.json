@@ -1,0 +1,32 @@
+{
+  "name": "g-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:dev": "nodemon server.js",
+    "production": "NODE_ENV=production nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "data:import": "node seed.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.7",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "express-fileupload": "^1.4.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3",
+    "mongoose-sequence": "^5.3.1",
+    "nodemailer": "^6.9.1",
+    "nodemon": "^2.0.22",
+    "stripe": "^11.17.0",
+    "uuid": "^9.0.0"
+  }
+}
