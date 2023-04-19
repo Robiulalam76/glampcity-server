@@ -86,44 +86,109 @@ const registerUser = async (req, res) => {
 };
 
 
-// login with email and password
+// user login with email and Password
 const loginUser = async (req, res) => {
-  console.log(req.body);
-
+  console.log(req.body.email);
   try {
-    const user = await User.findOne({ email: req.body.email });
-    console.log(user);
 
-    if (user && user?.verified === 'true' && user.password && bcrypt.compareSync(req.body.password, user.password)) {
-      const token = signInToken(user);
-      res.send({
-        token,
-        success: true,
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        address: user.address,
-        phone: user.phone,
-        image: user.image,
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.send({
+        status: "error",
+        error: error.message,
       });
-    }
-    else if (user?.verified === "false") {
-      res.status(201).send({
-        login: false,
-        message: "unverified account Please Verify Your Account",
-      })
     }
     else {
-      res.status(401).send({
-        message: "Invalid user or password!",
-      });
+      const findUser = await User.findOne({ email: email })
+      // console.log(findUser);
+      if (!findUser) {
+        return res.send({
+          status: "error",
+          message: { emailMessage: "There is no account on this email" }
+        });
+      }
+      else {
+        if (findUser?.verified === 'false') {
+          return res.send({
+            status: "error",
+            message: { emailMessage: "Email Not Verified" }
+          });
+        }
+        else {
+
+          if (bcrypt.compareSync(password, findUser.password)) {
+            const token = signInToken(findUser);
+            res.send({
+              token,
+              success: true,
+              _id: findUser._id,
+              name: findUser.name,
+              email: findUser.email,
+              address: findUser.address,
+              phone: findUser.phone,
+              image: findUser.image,
+            });
+          }
+          else {
+            return res.send({
+              status: "error",
+              message: { passwordMessage: "password is not correct" }
+            });
+          }
+
+        }
+      }
+
     }
-  } catch (err) {
-    res.status(500).send({
-      message: err.message,
+
+  } catch (error) {
+    res.status(400).json({
+      status: "error",
+      message: "Data couldn't insert a",
+      error: error.message,
     });
   }
 };
+
+
+// login with email and password
+// const loginUser = async (req, res) => {
+//   console.log(req.body);
+
+//   try {
+//     const user = await User.findOne({ email: req.body.email });
+//     console.log(user);
+
+//     if (user && user?.verified === 'true' && user.password && bcrypt.compareSync(req.body.password, user.password)) {
+//       const token = signInToken(user);
+//       res.send({
+//         token,
+//         success: true,
+//         _id: user._id,
+//         name: user.name,
+//         email: user.email,
+//         address: user.address,
+//         phone: user.phone,
+//         image: user.image,
+//       });
+//     }
+//     else if (user?.verified === "false") {
+//       res.status(201).send({
+//         login: false,
+//         message: "unverified account Please Verify Your Account",
+//       })
+//     }
+//     else {
+//       res.status(401).send({
+//         message: "Invalid user or password!",
+//       });
+//     }
+//   } catch (err) {
+//     res.status(500).send({
+//       message: err.message,
+//     });
+//   }
+// };
 
 const forgetPassword = async (req, res) => {
   const isAdded = await User.findOne({ email: req.body.verifyEmail });

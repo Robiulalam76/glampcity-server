@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   try {
     await mongoose.connect('mongodb+srv://glampcity:762485@cluster0.3iavmzn.mongodb.net/glampcity?retryWrites=true&w=majority', {
-      useFindAndModify: false,
-      useCreateIndex: true,
+      // useFindAndModify: false,
+      // useCreateIndex: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
