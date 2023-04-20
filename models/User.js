@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
     },
     company: {
       type: String,
-      required: false,
+      required: true,
     },
     city: {
       type: String,
