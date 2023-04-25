@@ -45,13 +45,11 @@ const getAddressById = async (req, res) => {
 
 // update address data
 const updateAddress = async (req, res) => {
-    console.log(req.body);
+    console.log(req.params.id, req.body, "aaaaa");
     try {
         const id = req.params.id;
         const updateData = req.body;
-        const user = await User.findById({ _id: id })
-        if (user) {
-            console.log(req.body, id);
+        if (updateData) {
             const result = await Address.updateOne(
                 { _id: id },
                 { $set: updateData },

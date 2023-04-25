@@ -40,19 +40,34 @@ const getCartProducts = async (req, res) => {
 };
 
 
-const deleteCartProduct = (req, res) => {
-    CartProduct.deleteOne({ _id: req.params.id }, (err) => {
-        if (err) {
-            res.status(500).send({
-                message: err.message,
-            });
-        } else {
-            res.status(200).send({
+const deleteCartProduct = async (req, res) => {
+    try {
+        const id = req.params.id;
+        if (id) {
+            const result = await CartProduct.deleteOne({ _id: id })
+            res.status(200).json({
+                delete: true,
+                status: "success",
                 message: "Product Remove Successfully!",
-                status: 200,
+                data: result,
             });
         }
-    });
+        else {
+            return res.status(400).json({
+                delete: false,
+                status: "error",
+                message: "Product Remove not Successfully!",
+                error: "User unauthorized"
+            });
+        }
+    }
+    catch (error) {
+        res.status(400).json({
+            status: "error",
+            message: "Data couldn't insert z",
+            error: error.message,
+        });
+    }
 };
 
 
