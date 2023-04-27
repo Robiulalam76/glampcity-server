@@ -53,7 +53,7 @@ router.get("/stock-out", getStockOutProducts);
 //get a product by slug
 router.get("/:slug", getProductBySlug);
 
-// search
+// search children_slug
 
 //get a product by parent
 // router.get("/cat/:parent", getProductByParent);
