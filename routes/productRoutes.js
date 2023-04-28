@@ -18,7 +18,8 @@ const {
   getProductsByParent,
   Stripehandler,
   createProductReview,
-  getLatestProducts
+  getLatestProducts,
+  getProductsBySlugAndChildrenSlug
 } = require("../controller/productController");
 
 //add a product
@@ -53,11 +54,12 @@ router.get("/stock-out", getStockOutProducts);
 //get a product by slug
 router.get("/:slug", getProductBySlug);
 
-// search children_slug
-
 //get a product by parent
 // router.get("/cat/:parent", getProductByParent);
 router.get("/cat/:slug", getProductsByParent);
+
+// search children_slug
+router.get("/cat/:slug/:children_slug", getProductsBySlugAndChildrenSlug);
 
 router.get("/search/:searchtitle", getSearchProducts);
 //update a product

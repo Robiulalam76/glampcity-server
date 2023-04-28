@@ -30,6 +30,10 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    children_slug: {
+      type: String,
+      required: true,
+    },
     titleSlug: {
       type: String,
       required: true,

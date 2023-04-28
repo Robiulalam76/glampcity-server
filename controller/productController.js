@@ -208,6 +208,21 @@ const getProductsByParent = async (req, res) => {
   }
 };
 
+// get product by slug and children_slug
+const getProductsBySlugAndChildrenSlug = async (req, res) => {
+  const { slug, children_slug } = req.params
+  console.log(children_slug);
+  try {
+    const products = await Product.find({ slug: slug, children_slug: children_slug });
+
+    res.status(200).send(products);
+  } catch (err) {
+    res.status(500).send({
+      message: `Slug problem, ${err.message}`,
+    });
+  }
+};
+
 // const getProductByParent = async (req, res) => {
 //   console.log("Params for parent: ", req.params.parent);
 //   try {
@@ -392,4 +407,6 @@ module.exports = {
   createProductReview,
   getLatestProducts,
   // Stripehandlerold,
+
+  getProductsBySlugAndChildrenSlug,
 };
