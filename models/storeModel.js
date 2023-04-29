@@ -89,7 +89,7 @@ const storeSchema = mongoose.Schema(
       required: true
     },
     date_attended: {
-      type: [String],
+      type: String,
       required: true
     },
     host_country: {
