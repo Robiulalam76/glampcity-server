@@ -6,15 +6,7 @@ const WishlistSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        sku: {
-            type: String,
-            required: false,
-        },
         title: {
-            type: String,
-            required: false,
-        },
-        unit: {
             type: String,
             required: false,
         },
@@ -24,12 +16,12 @@ const WishlistSchema = new mongoose.Schema(
             required: false,
         },
         price: {
-            type: Number,
+            type: String,
             required: true,
             default: 0,
         },
-        image: {
-            type: String,
+        images: {
+            type: [String],
             required: true,
         },
     },
