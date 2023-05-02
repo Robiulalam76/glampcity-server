@@ -15,11 +15,13 @@ const addressRoutes = require("./routes/addressRoutes");
 const voucherRoutes = require("./routes/voucherRoutes");
 
 
-const userRoutes = require("./routes/userRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const popularProductRoutes = require("./routes/popularProductRoutes");
 const topRaningProductRoutes = require("./routes/topRankingProductRoutes");
 const storeRoutes = require("./routes/storeRoutes");
+
+const userRoutes = require("./routes/userRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 // Conversation Routes
 const chatRoutes = require("./routes/conversationRoutes/chatRoutes");
@@ -50,8 +52,9 @@ app.use("/api/popular-product", popularProductRoutes);
 app.use("/api/top-ranking-product", topRaningProductRoutes);
 
 app.use("/api/category/", categoryRoutes);
-app.use("/api/user/", userRoutes);
 app.use("/api/store/", storeRoutes);
+app.use("/api/user/", userRoutes);
+app.use("/api/admin/", adminRoutes);
 
 // Use express's default error handling middleware
 app.use((err, req, res, next) => {

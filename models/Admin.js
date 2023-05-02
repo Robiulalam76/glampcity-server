@@ -36,7 +36,7 @@ const adminSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: false,
+      required: true,
       default: bcrypt.hashSync("12345678"),
     },
     role: {
@@ -48,6 +48,7 @@ const adminSchema = new mongoose.Schema(
     joiningData: {
       type: Date,
       required: false,
+      default: Date.now()
     },
     wallet: {
       type: Number,

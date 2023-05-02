@@ -240,7 +240,7 @@ const getProductById = async (req, res) => {
   console.log(req.params.id);
   try {
     const product = await Product.findById(req.params.id);
-    console.log(product);
+    // console.log(product);
     res.send(product);
   } catch (err) {
     res.status(500).send({
@@ -315,42 +315,65 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
-const updateStatus = (req, res) => {
+const updateStatus = async (req, res) => {
   const newStatus = req.body.status;
-  Product.updateOne(
-    { _id: req.params.id },
-    {
-      $set: {
-        status: newStatus,
-      },
-    },
-    (err) => {
-      if (err) {
-        res.status(500).send({
-          message: err.message,
-        });
-      } else {
-        res.status(200).send({
-          message: `Product ${newStatus} Successfully!`,
-        });
-      }
+  console.log(newStatus);
+
+  try {
+
+    const findProduct = await Product.findById({ _id: req.params.id })
+    if (findProduct) {
+      const result = await Product.updateOne(
+        { _id: req.params.id },
+        {
+          $set: {
+            status: newStatus,
+          },
+        },
+      )
+      res.status(200).send({
+        message: `Product ${newStatus} Successfully!`,
+      });
     }
-  );
+    else {
+      res.status(500).send({
+        message: "Product Not Found",
+      });
+    }
+
+  }
+  catch (error) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+
 };
 
-const deleteProduct = (req, res) => {
-  Product.deleteOne({ _id: req.params.id }, (err) => {
-    if (err) {
-      res.status(500).send({
-        message: err.message,
-      });
-    } else {
+const deleteProduct = async (req, res) => {
+  // console.log(req.params.id);
+
+  try {
+    const findProduct = await Product.findById({ _id: req.params.id })
+    if (findProduct) {
+      const result = await Product.deleteOne({ _id: req.params.id })
       res.status(200).send({
         message: "Product Deleted Successfully!",
         status: 200,
       });
     }
-  });
+    else {
+      res.status(500).send({
+        message: "Product Not Found",
+      });
+    }
+  }
+  catch (error) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+
 };
 
 
@@ -389,6 +412,25 @@ const getSearchProducts = async (req, res) => {
   }
 };
 
+
+
+// 6415bfdb6f825c0cb4c66499
+
+// handle function call to updated property
+async function addProperty() {
+  try {
+    const result = await Product.updateMany({}, { price: 80 });
+    console.log(`${result.nModified} products updated`);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    // close the database connection
+    await mongoose.connection.close();
+  }
+}
+
+
+
 module.exports = {
   addProduct,
   addAllProducts,
@@ -409,4 +451,5 @@ module.exports = {
   // Stripehandlerold,
 
   getProductsBySlugAndChildrenSlug,
+  addProperty,
 };

@@ -405,6 +405,7 @@ const patchUserInfoById = async (req, res) => {
         { runValidators: true }
       );
       res.status(200).json({
+        update: true,
         status: "success",
         message: "Update successfully",
         data: result,

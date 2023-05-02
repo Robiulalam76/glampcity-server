@@ -88,28 +88,38 @@ const updateCategory = async (req, res) => {
   }
 };
 
-const updateStatus = (req, res) => {
+const updateStatus = async (req, res) => {
   const newStatus = req.body.status;
+  console.log(newStatus);
 
-  Category.updateOne(
-    { _id: req.params.id },
-    {
-      $set: {
-        status: newStatus,
-      },
-    },
-    (err) => {
-      if (err) {
-        res.status(500).send({
-          message: err.message,
-        });
-      } else {
-        res.status(200).send({
-          message: `Category ${newStatus} Successfully!`,
-        });
-      }
+  try {
+
+    const findCategory = await Category.findById({ _id: req.params.id })
+    if (findCategory) {
+      const result = await Category.updateOne(
+        { _id: req.params.id },
+        {
+          $set: {
+            status: newStatus,
+          },
+        },
+      )
+      res.status(200).send({
+        message: `Category ${newStatus} Successfully!`,
+      });
     }
-  );
+    else {
+      res.status(500).send({
+        message: "Category Not Found",
+      });
+    }
+
+  }
+  catch (error) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
 };
 
 const deleteSubCategory = async (req, res) => {

@@ -3,14 +3,14 @@ const router = express.Router();
 const {
   registerAdmin,
   loginAdmin,
-  forgetPassword,
-  resetPassword,
-  addStaff,
-  getAllStaff,
-  getStaffById,
-  updateStaff,
-  deleteStaff,
-  updateSeller,
+  // forgetPassword,
+  // resetPassword,
+  // addStaff,
+  // getAllStaff,
+  // getStaffById,
+  // updateStaff,
+  // deleteStaff,
+  // updateSeller,
 } = require("../controller/adminController");
 const { passwordVerificationLimit } = require("../config/others");
 
@@ -20,29 +20,33 @@ router.post("/register", registerAdmin);
 //login a admin
 router.post("/login", loginAdmin);
 
-//forget-password
-router.put("/forget-password", passwordVerificationLimit, forgetPassword);
 
-//reset-password
-router.put("/reset-password", resetPassword);
 
-//add a staff
-router.post("/add", addStaff);
+// //forget-password
+// router.put("/forget-password", passwordVerificationLimit, forgetPassword);
 
-//get all staff
-// router.post('/', getAllStaff);
-router.get("/", getAllStaff);
+// //reset-password
+// router.put("/reset-password", resetPassword);
 
-//get a staff
-router.get("/:id", getStaffById);
+// //add a staff
+// router.post("/add", addStaff);
 
-//update a staff
-router.put("/:id", updateStaff);
+// //get all staff
+// // router.post('/', getAllStaff);
+// router.get("/", getAllStaff);
 
-//update as a seller
-router.put("/seller/:id", updateSeller);
+// //get a staff
+// router.get("/:id", getStaffById);
 
-//delete a staff
-router.delete("/:id", deleteStaff);
+// //update a staff
+// router.put("/:id", updateStaff);
+
+// //update as a seller
+// router.put("/seller/:id", updateSeller);
+
+// //delete a staff
+// router.delete("/:id", deleteStaff);
+
+
 
 module.exports = router;

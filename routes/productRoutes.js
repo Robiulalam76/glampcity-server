@@ -19,7 +19,8 @@ const {
   Stripehandler,
   createProductReview,
   getLatestProducts,
-  getProductsBySlugAndChildrenSlug
+  getProductsBySlugAndChildrenSlug,
+  addProperty
 } = require("../controller/productController");
 
 //add a product
@@ -74,5 +75,9 @@ router.route("/:id/reviews").post(createProductReview);
 
 //delete a product
 router.delete("/:id", deleteProduct);
+
+
+//------------- addProperty
+// router.patch("/addProperty", addProperty)
 
 module.exports = router;
