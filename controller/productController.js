@@ -1,5 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Product = require("../models/Product");
+const Admin = require("../models/Admin");
+const User = require("../models/User");
 const stripe = require("stripe")(
   "sk_test_51L2pj4JsstQNEHZrVKGXwGV2lLAGBGUMmkDla3oHx1oWqgLPW7CmUEtShbiBpAzRquDoMHlHRQmPrLjCetKrpzk000hIULFMI7"
 );
@@ -135,7 +137,7 @@ const StripehandlerNew = async (req, res) => {
 
 const getShowingProducts = async (req, res) => {
   try {
-    const products = await Product.find({}).sort({ _id: -1 });
+    const products = await Product.find({ status: "Show" }).sort({ _id: -1 });
     res.send(products);
   } catch (err) {
     res.status(500).send({
@@ -169,6 +171,8 @@ const getAllProducts = async (req, res) => {
     });
   }
 };
+
+
 
 const getStockOutProducts = async (req, res) => {
   try {
@@ -214,7 +218,7 @@ const getProductsBySlugAndChildrenSlug = async (req, res) => {
   const { slug, children_slug } = req.params
   console.log(children_slug);
   try {
-    const products = await Product.find({ slug: slug, children_slug: children_slug });
+    const products = await Product.find({ status: "Show", slug: slug, children_slug: children_slug });
 
     res.status(200).send(products);
   } catch (err) {
@@ -381,7 +385,7 @@ const deleteProduct = async (req, res) => {
 
 const getLatestProducts = async (req, res) => {
   try {
-    const result = await Product.find().skip(0).limit(10).sort({ _id: -1 })
+    const result = await Product.find({ status: "Show" }).skip(0).limit(10).sort({ _id: -1 })
     res.status(200).send(result)
   } catch (error) {
     res.status(500).json({ message: error.message })
@@ -414,6 +418,43 @@ const getSearchProducts = async (req, res) => {
   }
 };
 
+
+
+
+
+
+
+
+// ---------------------- Dashboard ------------------------
+
+// get all products by role
+const getAllProductsByRole = async (req, res) => {
+  try {
+    const { _id } = req.user
+    const isAdmin = await Admin.findById({ _id: _id })
+    const isSeller = await User.findById({ _id: _id })
+
+    // console.log(isAdmin, isSeller, _id);
+
+    if (isAdmin && isAdmin?.role === "admin") {
+      const products = await Product.find({}).sort({ _id: -1 });
+      res.send(products);
+    }
+    else if (isSeller && isSeller?.role === "seller") {
+      const products = await Product.find({ sellerId: _id }).sort({ _id: -1 });
+      res.send(products);
+    }
+    else {
+      res.status(500).send({
+        message: "User Not Valid",
+      });
+    }
+  } catch (err) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+};
 
 
 // 6415bfdb6f825c0cb4c66499
@@ -453,5 +494,8 @@ module.exports = {
   // Stripehandlerold,
 
   getProductsBySlugAndChildrenSlug,
+
+  // ---------------dashboard ----------------
+  getAllProductsByRole,
   addProperty,
 };

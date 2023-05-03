@@ -1,5 +1,43 @@
 const Admin = require("../models/Admin");
 const Category = require("../models/Category");
+const User = require("../models/User");
+
+
+
+// ---------------------- Dashboard ------------------------
+
+// get all products by role
+const getAllCategoriesByRole = async (req, res) => {
+  try {
+    const { _id } = req.user
+    const isAdmin = await Admin.findById({ _id: _id })
+    const isSeller = await User.findById({ _id: _id })
+
+    // console.log(isAdmin, isSeller, _id);
+
+    if (isAdmin && isAdmin?.role === "admin") {
+      const categories = await Category.find({}).sort({ _id: -1 });
+      res.send(categories);
+    }
+    else if (isSeller && isSeller?.role === "seller") {
+      const categories = await Category.find({ approved: "true" }).sort({ _id: -1 });
+      res.send(categories);
+    }
+    else {
+      res.status(500).send({
+        message: "User Not Valid",
+      });
+    }
+  } catch (err) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+};
+
+
+// ---------------------- Dashboard ------------------------
+
 
 const addCategory = async (req, res) => {
   try {
@@ -53,6 +91,35 @@ const getAllCategory = async (req, res) => {
   try {
     const categories = await Category.find({}).sort({ _id: -1 });
     res.send(categories);
+  } catch (err) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+};
+
+
+// get all category for dashboard
+const getCategories = async (req, res) => {
+  // console.log(req.user);
+  try {
+    const { _id } = req.user
+    const isAdmin = await Admin.findById({ _id: _id })
+    const isSeller = await User.findById({ _id: _id })
+
+    if (isAdmin && isAdmin?.role === "admin") {
+      const categories = await Category.find({}).sort({ _id: -1 });
+      res.send(categories);
+    }
+    else if (isSeller && isSeller?.role === "seller") {
+      const categories = await Category.find({ status: "Show" }).sort({ _id: -1, });
+      res.send(categories);
+    }
+    else {
+      res.status(401).send({
+        message: "User is not Admin / Seller",
+      });
+    }
   } catch (err) {
     res.status(500).send({
       message: err.message,
@@ -166,16 +233,26 @@ const deleteCategory = (req, res) => {
   // );
 
 
+
+
+
+
 };
 
 module.exports = {
   addCategory,
   addAllCategory,
   getAllCategory,
+  getCategories,
+
+
   getShowingCategory,
   getCategoryById,
   updateCategory,
   updateStatus,
   deleteSubCategory,
   deleteCategory,
+
+
+  getAllCategoriesByRole,
 };

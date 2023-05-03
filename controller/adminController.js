@@ -5,6 +5,7 @@ dayjs.extend(utc);
 const jwt = require("jsonwebtoken");
 const { signInToken, tokenForVerify, sendEmail } = require("../config/auth");
 const Admin = require("../models/Admin");
+const User = require("../models/User");
 
 const registerAdmin = async (req, res) => {
   try {
@@ -44,6 +45,7 @@ const registerAdmin = async (req, res) => {
 const loginAdmin = async (req, res) => {
   try {
     const admin = await Admin.findOne({ email: req.body.email });
+    const seller = await User.findOne({ email: req.body.email });
     if (admin && bcrypt.compareSync(req.body.password, admin.password)) {
       const token = signInToken(admin);
       res.send({
@@ -54,7 +56,19 @@ const loginAdmin = async (req, res) => {
         email: admin.email,
         image: admin.image,
       });
-    } else {
+    }
+    else if (seller && bcrypt.compareSync(req.body.password, seller.password)) {
+      const token = signInToken(seller);
+      res.send({
+        token,
+        _id: seller._id,
+        name: seller.name,
+        phone: seller.phone,
+        email: seller.email,
+        image: seller.image,
+      });
+    }
+    else {
       res.status(401).send({
         message: "Invalid Admin or password!",
       });
@@ -65,6 +79,33 @@ const loginAdmin = async (req, res) => {
     });
   }
 };
+
+
+// get admin or seller info
+
+const getRoleInfo = async (req, res) => {
+  try {
+    const { _id } = req.user
+    console.log("hello-------", _id);
+    const isAdmin = await Admin.findById({ _id: _id })
+    const isSeller = await User.findById({ _id: _id })
+    if (isAdmin && isAdmin?.role === "admin") {
+      res.send(isAdmin);
+    }
+    else if (isSeller && isSeller?.role === "seller") {
+      res.send(isSeller);
+    }
+    else {
+      res.status(500).send({
+        message: "User Not Valid",
+      });
+    }
+  } catch (err) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+}
 
 
 
@@ -261,4 +302,6 @@ module.exports = {
   // updateStaff,
   // deleteStaff,
   // updateSeller,
+
+  getRoleInfo,
 };

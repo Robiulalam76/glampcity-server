@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   registerAdmin,
   loginAdmin,
+  getRoleInfo,
   // forgetPassword,
   // resetPassword,
   // addStaff,
@@ -13,6 +14,7 @@ const {
   // updateSeller,
 } = require("../controller/adminController");
 const { passwordVerificationLimit } = require("../config/others");
+const { isAuth } = require("../config/auth");
 
 //register a staff
 router.post("/register", registerAdmin);
@@ -47,6 +49,9 @@ router.post("/login", loginAdmin);
 // //delete a staff
 // router.delete("/:id", deleteStaff);
 
+
+// get role info
+router.get("/getRoleInfo", isAuth, getRoleInfo)
 
 
 module.exports = router;

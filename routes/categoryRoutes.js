@@ -10,7 +10,10 @@ const {
   updateStatus,
   deleteCategory,
   deleteSubCategory,
+  getCategories,
+  getAllCategoriesByRole,
 } = require("../controller/categoryController");
+const { isAuth } = require("../config/auth");
 
 //add a category
 router.post("/add/:id", addCategory);
@@ -23,6 +26,9 @@ router.get("/show", getShowingCategory);
 
 //get all category
 router.get("/", getAllCategory);
+
+//get category for dashboard
+router.get("/all", isAuth, getCategories);
 
 //get a category
 router.get("/:id", getCategoryById);
@@ -38,5 +44,8 @@ router.delete("/:id", deleteCategory);
 
 //Remove a sub category
 router.put("/sub-category/:id", deleteSubCategory);
+
+// ---------------------- dashboard Routes --------------------
+router.get("/getAllCategories/byRole", isAuth, getAllCategoriesByRole);
 
 module.exports = router;
