@@ -5,6 +5,7 @@ const stripe = require("stripe")(
 );
 
 const addProduct = async (req, res) => {
+  console.log(req.body);
   try {
     const newProduct = new Product(req.body);
     // console.log(req.body);
@@ -265,8 +266,9 @@ const updateProduct = async (req, res) => {
       product.originalPrice = req.body.originalPrice;
       product.price = req.body.price;
       product.discount = req.body.discount;
-      product.image = req.body.image;
+      product.images = req.body.images;
       product.tag = req.body.tag;
+      product.storeName = req.body.storeName;
       await product.save();
       res.send({ data: product, message: "Product updated successfully!" });
     }
