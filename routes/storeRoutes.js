@@ -9,7 +9,9 @@ const {
   addStoreBySeller,
   deleteSingleStore,
   getVerifiedStores,
+  getAllStoresByRole,
 } = require("../controller/storeController");
+const { isAuth } = require("../config/auth");
 // const { protect } = require("../middleware/authMiddleware");
 
 router.route("/").post(addStore).get(getStore);
@@ -21,5 +23,8 @@ router.delete("/:id", deleteSingleStore);
 // router.route("/myorders").get(protect, getMyOrders);
 // router.route('/:id/pay').put(protect, updateOrderToPaid)
 // router.route('/:id/deliver').put(protect, admin, updateOrderToDelivered);
+
+
+router.get("/getAllStores/byRole", isAuth, getAllStoresByRole)
 
 module.exports = router;

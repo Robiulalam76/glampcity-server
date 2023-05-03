@@ -11,9 +11,9 @@ const storeSchema = mongoose.Schema(
       type: String,
       required: true
     },
-    userID: {
+    userId: {
       type: String,
-      required: false
+      required: true
     },
 
     business_type: {

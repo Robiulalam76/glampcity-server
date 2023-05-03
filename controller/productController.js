@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Product = require("../models/Product");
 const Admin = require("../models/Admin");
 const User = require("../models/User");
+const Store = require("../models/storeModel");
 const stripe = require("stripe")(
   "sk_test_51L2pj4JsstQNEHZrVKGXwGV2lLAGBGUMmkDla3oHx1oWqgLPW7CmUEtShbiBpAzRquDoMHlHRQmPrLjCetKrpzk000hIULFMI7"
 );
@@ -462,7 +463,7 @@ const getAllProductsByRole = async (req, res) => {
 // handle function call to updated property
 async function addProperty() {
   try {
-    const result = await Product.updateMany({}, { price: 80 });
+    const result = await Store.updateMany({}, { userId: "640c586a9d959d1d04ea94b5" });
     console.log(`${result.nModified} products updated`);
   } catch (error) {
     console.error(error);

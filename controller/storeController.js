@@ -1,5 +1,6 @@
 // const asyncHandler = require("express-async-handler");
 // const products = require("../data/products");
+const Admin = require("../models/Admin");
 const Product = require("../models/Product");
 const Store = require("../models/storeModel");
 const User = require("../models/User");
@@ -114,6 +115,33 @@ const getVerifiedStores = async (req, res) => {
 };
 
 
+const getAllStoresByRole = async (req, res) => {
+  try {
+    const { _id } = req.user
+    const isAdmin = await Admin.findById({ _id: _id })
+    const isSeller = await User.findById({ _id: _id })
+
+    if (isAdmin && isAdmin?.role === "admin") {
+      const stores = await Store.find({});
+      res.send(stores);
+    }
+    else if (isSeller && isSeller?.role === "seller") {
+      const stores = await Store.find({ userId: _id })
+      res.send(stores);
+    }
+    else {
+      res.status(500).send({
+        message: "User Not Valid",
+      });
+    }
+  } catch (err) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+}
+
+
 
 module.exports = {
   addStore,
@@ -122,5 +150,7 @@ module.exports = {
   getStoreById,
   addStoreBySeller,
   deleteSingleStore,
-  getVerifiedStores
+  getVerifiedStores,
+
+  getAllStoresByRole,
 };
