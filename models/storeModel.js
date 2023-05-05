@@ -104,6 +104,11 @@ const storeSchema = mongoose.Schema(
       type: [String],
       required: false
     },
+    status: {
+      type: String,
+      default: "Show",
+      enum: ["Show", "Hide"],
+    },
     crateAt: {
       type: Date,
       default: Date.now()

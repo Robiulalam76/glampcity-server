@@ -10,6 +10,8 @@ const {
   deleteSingleStore,
   getVerifiedStores,
   getAllStoresByRole,
+  addProperty,
+  updateStatus,
 } = require("../controller/storeController");
 const { isAuth } = require("../config/auth");
 // const { protect } = require("../middleware/authMiddleware");
@@ -25,6 +27,8 @@ router.delete("/:id", deleteSingleStore);
 // router.route('/:id/deliver').put(protect, admin, updateOrderToDelivered);
 
 
+router.put("/status/:id", isAuth, updateStatus)
 router.get("/getAllStores/byRole", isAuth, getAllStoresByRole)
+// router.patch("/addProperty", addProperty)
 
 module.exports = router;

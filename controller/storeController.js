@@ -32,7 +32,7 @@ const addStore = async (req, res) => {
 // @route GET /api/orders
 // @access Private/Admin
 const getStore = async (req, res) => {
-  const store = await Store.find({});
+  const store = await Store.find({ status: "Show" });
 
   if (!store) {
     res.status(200);
@@ -115,6 +115,41 @@ const getVerifiedStores = async (req, res) => {
 };
 
 
+const updateStatus = async (req, res) => {
+  const newStatus = req.body.status;
+  console.log(newStatus);
+
+  try {
+
+    const findCategory = await Store.findById({ _id: req.params.id })
+    if (findCategory) {
+      const result = await Store.updateOne(
+        { _id: req.params.id },
+        {
+          $set: {
+            status: newStatus,
+          },
+        },
+      )
+      res.status(200).send({
+        message: `Category ${newStatus} Successfully!`,
+      });
+    }
+    else {
+      res.status(500).send({
+        message: "Category Not Found",
+      });
+    }
+
+  }
+  catch (error) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+};
+
+
 const getAllStoresByRole = async (req, res) => {
   try {
     const { _id } = req.user
@@ -142,6 +177,20 @@ const getAllStoresByRole = async (req, res) => {
 }
 
 
+// handle function call to updated property
+async function addProperty() {
+  try {
+    const result = await Store.updateMany({}, { status: "Show" });
+    console.log(`${result.nModified} products updated`);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    // close the database connection
+    await mongoose.connection.close();
+  }
+}
+
+
 
 module.exports = {
   addStore,
@@ -152,5 +201,7 @@ module.exports = {
   deleteSingleStore,
   getVerifiedStores,
 
+  updateStatus,
   getAllStoresByRole,
+  addProperty
 };
