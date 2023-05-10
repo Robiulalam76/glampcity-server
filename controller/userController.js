@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const { signInToken, tokenForVerify, sendEmail } = require("../config/auth");
+const Admin = require("../models/Admin");
 // const Admin = require("../models/Admin");
 
 const verifyEmailAddress = async (req, res) => {
@@ -422,27 +423,25 @@ const patchUserInfoById = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
-  const admin = await Admin.findOne({ _id: req.body.adminId })
-  if (admin?.role === 'admin') {
-    User.deleteOne({ _id: req.params.id }, (err) => {
-      if (err) {
-        res.status(500).send({
-          message: err.message,
-        });
-      } else {
-        res.status(200).send({
-          message: "User Deleted Successfully!",
-        });
-      }
-    });
-  }
-  else {
-    res.status(200).send({
-      message: "User Delete for Needed Admin",
+
+  try {
+    const { _id } = req.user
+    const isAdmin = await Admin.findById({ _id: _id })
+    if (isAdmin?.role === 'admin') {
+      const result = await User.deleteOne({ _id: req.params.id })
+      res.status(200).send({
+        message: "User Delete for Needed Admin",
+      });
+    }
+
+  } catch (error) {
+    res.status(500).send({
+      message: err.message,
     });
   }
 
 };
+
 
 module.exports = {
   loginUser,

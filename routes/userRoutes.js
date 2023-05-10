@@ -44,7 +44,7 @@ router.post('/signup', signUpWithProvider);
 // router.post('/change-password', changePassword);
 
 //get all user
-router.get('/allUsers', getAllUsers);
+router.get('/', getAllUsers);
 
 //get a user
 router.get('/:id', getUserById);
@@ -53,7 +53,7 @@ router.get('/:id', getUserById);
 router.put('/:id', updateUser);
 
 //delete a user
-router.delete('/:id', deleteUser);
+router.delete('/:id', isAuth, deleteUser);
 
 //-------------------
 
