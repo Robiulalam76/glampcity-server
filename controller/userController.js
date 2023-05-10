@@ -430,7 +430,7 @@ const deleteUser = async (req, res) => {
     if (isAdmin?.role === 'admin') {
       const result = await User.deleteOne({ _id: req.params.id })
       res.status(200).send({
-        message: "User Delete for Needed Admin",
+        message: "User Delete Successfully!",
       });
     }
 
