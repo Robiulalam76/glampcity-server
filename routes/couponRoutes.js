@@ -8,12 +8,13 @@ const {
     updateCoupon,
     deleteCoupon,
 } = require('../controller/couponController');
+const { isAuth } = require('../config/auth');
 
 //add a coupon
-router.post('/add', addCoupon);
+router.post('/add', isAuth, addCoupon);
 
 //add multiple coupon
-router.post('/all', addAllCoupon);
+router.post('/all', isAuth, addAllCoupon);
 
 //get all coupon
 router.get('/', getAllCoupons);
@@ -22,9 +23,9 @@ router.get('/', getAllCoupons);
 router.get('/:id', getCouponById);
 
 //update a coupon
-router.put('/:id', updateCoupon);
+router.put('/:id', isAuth, updateCoupon);
 
 //delete a coupon
-router.delete('/:id', deleteCoupon);
+router.delete('/:id', isAuth, deleteCoupon);
 
 module.exports = router;

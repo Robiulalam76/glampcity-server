@@ -73,7 +73,7 @@ const deleteCoupon = async (req, res) => {
         const { _id } = req.user
         const isAdmin = await Admin.findById({ _id: _id })
         if (isAdmin?.role === 'admin') {
-            const result = await User.deleteOne({ _id: req.params.id })
+            const result = await Coupon.deleteOne({ _id: req.params.id })
             res.status(200).send({
                 message: "Coupon Deleted Successfully!",
             });
