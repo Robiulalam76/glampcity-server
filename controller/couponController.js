@@ -2,6 +2,7 @@ const Coupon = require('../models/Coupon');
 const dayjs = require('dayjs');
 const utc = require('dayjs/plugin/utc');
 const Admin = require('../models/Admin');
+const User = require('../models/User');
 dayjs.extend(utc);
 
 const addCoupon = async (req, res) => {
@@ -72,7 +73,14 @@ const deleteCoupon = async (req, res) => {
     try {
         const { _id } = req.user
         const isAdmin = await Admin.findById({ _id: _id })
+        const isSeller = await User.findById({ _id: _id })
         if (isAdmin?.role === 'admin') {
+            const result = await Coupon.deleteOne({ _id: req.params.id })
+            res.status(200).send({
+                message: "Coupon Deleted Successfully!",
+            });
+        }
+        if (isSeller?.role === 'seller') {
             const result = await Coupon.deleteOne({ _id: req.params.id })
             res.status(200).send({
                 message: "Coupon Deleted Successfully!",

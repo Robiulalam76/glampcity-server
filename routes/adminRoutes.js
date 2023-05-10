@@ -4,14 +4,14 @@ const {
   registerAdmin,
   loginAdmin,
   getRoleInfo,
-  // forgetPassword,
-  // resetPassword,
-  // addStaff,
-  // getAllStaff,
-  // getStaffById,
-  // updateStaff,
-  // deleteStaff,
-  // updateSeller,
+  forgetPassword,
+  resetPassword,
+  addStaff,
+  getAllStaff,
+  getStaffById,
+  updateStaff,
+  deleteStaff,
+  updateSeller,
 } = require("../controller/adminController");
 const { passwordVerificationLimit } = require("../config/others");
 const { isAuth } = require("../config/auth");
@@ -22,32 +22,30 @@ router.post("/register", registerAdmin);
 //login a admin
 router.post("/login", loginAdmin);
 
+//forget-password
+router.put("/forget-password", passwordVerificationLimit, forgetPassword);
 
+//reset-password
+router.put("/reset-password", resetPassword);
 
-// //forget-password
-// router.put("/forget-password", passwordVerificationLimit, forgetPassword);
+//add a staff
+router.post("/add", addStaff);
 
-// //reset-password
-// router.put("/reset-password", resetPassword);
-
-// //add a staff
-// router.post("/add", addStaff);
-
-// //get all staff
-// // router.post('/', getAllStaff);
-// router.get("/", getAllStaff);
+//get all staff
+router.post('/', getAllStaff);
+router.get("/", getAllStaff);
 
 // //get a staff
-// router.get("/:id", getStaffById);
+router.get("/:id", getStaffById);
 
-// //update a staff
-// router.put("/:id", updateStaff);
+//update a staff
+router.put("/:id", updateStaff);
 
-// //update as a seller
-// router.put("/seller/:id", updateSeller);
+//update as a seller
+router.put("/seller/:id", updateSeller);
 
-// //delete a staff
-// router.delete("/:id", deleteStaff);
+//delete a staff
+router.delete("/:id", deleteStaff);
 
 
 // get role info
