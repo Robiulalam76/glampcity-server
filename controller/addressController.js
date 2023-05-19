@@ -25,6 +25,7 @@ const createAddress = async (req, res) => {
 
 // get address by userId
 const getAddressById = async (req, res) => {
+    console.log(req.params.id, "my Address");
     try {
         const id = req.params.id
         const result = await Address.find({ userId: id })

@@ -45,7 +45,7 @@ const getStore = async (req, res) => {
 // @route GET /api/orders/:id
 // @access Private
 const getStoreById = async (req, res) => {
-  const store = await Store.find({ userID: req.params.id });
+  const store = await Store.findOne({ _id: req.params.id });
   // console.log("Params: ", req.params.id);
   // const products = await Product.find({ store: `${req.params.id}` });
   // console.log("products: ", products);

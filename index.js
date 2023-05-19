@@ -27,6 +27,8 @@ const adminRoutes = require("./routes/adminRoutes");
 // Conversation Routes
 const chatRoutes = require("./routes/conversationRoutes/chatRoutes");
 const messageRoutes = require("./routes/conversationRoutes/messageRoutes");
+const storeChatRoutes = require("./routes/conversationRoutes/storeChatRoutes");
+const storeMessageRoutes = require("./routes/conversationRoutes/storeMessageRoutes");
 
 connectDB();
 app.use(cors());
@@ -41,6 +43,8 @@ app.get("/", (req, res) => {
 // Conversations Routes
 app.use("/api/chat/", chatRoutes);
 app.use("/api/message/", messageRoutes);
+app.use("/api/storechat/", storeChatRoutes);
+app.use("/api/storemessage/", storeMessageRoutes);
 
 //this for route will need for store front, also for admin dashboard
 app.use("/api/products/", productRoutes);

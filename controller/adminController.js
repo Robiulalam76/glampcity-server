@@ -277,18 +277,22 @@ const updateSeller = async (req, res) => {
   }
 };
 
-const deleteStaff = (req, res) => {
-  Admin.deleteOne({ _id: req.params.id }, (err) => {
-    if (err) {
-      res.status(500).send({
-        message: err.message,
-      });
-    } else {
+const deleteStaff = async (req, res) => {
+  try {
+    const { _id } = req.user
+    const isAdmin = await Admin.findById({ _id: _id })
+    if (isAdmin?.role === 'admin') {
+      const result = await Admin.deleteOne({ _id: req.params.id })
       res.status(200).send({
         message: "User Deleted Successfully!",
       });
     }
-  });
+
+  } catch (error) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
 };
 
 

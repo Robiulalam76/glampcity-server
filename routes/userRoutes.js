@@ -14,6 +14,7 @@ const {
   deleteUser,
   patchUserInfoById,
   getUserInfo,
+  signupWithSocial,
 } = require('../controller/userController');
 
 // const {
@@ -33,6 +34,7 @@ router.post('/login', loginUser);
 
 //register or login with google and fb
 router.post('/signup', signUpWithProvider);
+router.post('/signup/withsocial', signupWithSocial);
 
 //forget-password
 // router.put('/forget-password', passwordVerificationLimit, forgetPassword);
@@ -61,6 +63,6 @@ router.delete('/:id', isAuth, deleteUser);
 router.patch('/:id', patchUserInfoById);
 
 // get userinfo by token
-router.get('/', isAuth, getUserInfo);
+router.get('/userinfo/me', isAuth, getUserInfo);
 
 module.exports = router;

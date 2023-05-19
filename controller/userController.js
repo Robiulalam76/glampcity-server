@@ -293,6 +293,52 @@ const changePassword = async (req, res) => {
   }
 };
 
+
+const signupWithSocial = async (req, res) => {
+  try {
+    const findEmail = await User.findOne({ email: req.body.email })
+
+    if (findEmail && findEmail?.createWith === "google") {
+      console.log("ace user");
+      const token = signInToken(findEmail);
+      res.status(200).json({
+        token,
+        success: true,
+        message: "Data insert successfully",
+      });
+    }
+    else {
+
+      const newUser = {
+        email: req.body.email,
+        name: req.body.name && req.body.name,
+        image: req.body.image,
+        createWith: req.body.createWith,
+        verified: req.body.verified
+      }
+      console.log(newUser);
+      const result = await User.create(newUser)
+
+      if (result) {
+        const token = signInToken(result);
+        res.status(200).json({
+          token,
+          success: true,
+          message: "Data insert successfully",
+        });
+      }
+    }
+
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({
+      status: "error",
+      message: "Data couldn't insert z",
+      error: error.message,
+    });
+  }
+};
+
 const signUpWithProvider = async (req, res) => {
   try {
     const isAdded = await User.findOne({ email: req.body.email });
@@ -383,7 +429,7 @@ const updateUser = async (req, res) => {
 const getUserInfo = async (req, res) => {
   try {
     const user = await User.findOne({ email: req?.user?.email })
-    // console.log(user);
+    console.log(user);
     res.send(user);
   } catch (err) {
     res.status(500).send({ message: err.message });
@@ -457,4 +503,5 @@ module.exports = {
   deleteUser,
   patchUserInfoById,
   getUserInfo,
+  signupWithSocial
 };

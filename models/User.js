@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
     },
     company: {
       type: String,
-      required: true,
+      required: false,
     },
     city: {
       type: String,
@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: false,
     },
     verified: {
       type: String,
@@ -67,6 +67,10 @@ const userSchema = new mongoose.Schema(
       default: 0,
       required: false,
     },
+    createWith: {
+      type: String,
+      required: true
+    }
   },
   {
     timestamps: true,

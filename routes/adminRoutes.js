@@ -45,7 +45,7 @@ router.put("/:id", updateStaff);
 router.put("/seller/:id", updateSeller);
 
 //delete a staff
-router.delete("/:id", deleteStaff);
+router.delete("/:id", isAuth, deleteStaff);
 
 
 // get role info
