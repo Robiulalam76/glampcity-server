@@ -427,9 +427,9 @@ const updateUser = async (req, res) => {
 
 // get user info by token verified => email
 const getUserInfo = async (req, res) => {
+  console.log(req?.user?.email);
   try {
-    const user = await User.findOne({ email: req?.user?.email })
-    console.log(user);
+    const user = await User.findOne({ email: req.user.email })
     res.send(user);
   } catch (err) {
     res.status(500).send({ message: err.message });

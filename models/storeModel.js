@@ -7,6 +7,10 @@ const storeSchema = mongoose.Schema(
       enum: ['true', 'false'],
       default: false
     },
+    logo: {
+      type: String,
+      default: "https://s3.amazonaws.com/thumbnails.venngage.com/template/fc8535df-be09-4c80-8ea5-a69a34b2318e.png"
+    },
     username: {
       type: String,
       required: true
