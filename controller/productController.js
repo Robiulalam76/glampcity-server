@@ -458,6 +458,26 @@ const getAllProductsByRole = async (req, res) => {
 };
 
 
+const getShowProductsByStoreId = async (req, res) => {
+  try {
+    const { storeId } = req.params
+    console.log(storeId);
+    const products = await Product.find({
+      $and: [
+        { storeId: storeId },
+        { status: "Show" }
+      ]
+    })
+    console.log(products);
+    res.send(products)
+  } catch (error) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+}
+
+
 // 6415bfdb6f825c0cb4c66499
 
 // handle function call to updated property
@@ -498,5 +518,6 @@ module.exports = {
 
   // ---------------dashboard ----------------
   getAllProductsByRole,
+  getShowProductsByStoreId,
   addProperty,
 };

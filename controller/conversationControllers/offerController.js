@@ -24,6 +24,23 @@ const getOfferRequest = async (req, res) => {
     }
 }
 
+const getOfferRequestWtihStore = async (req, res) => {
+    try {
+        const { storeId, buyerId } = req.params
+
+        const result = await Offer.find({
+            $and: [
+                { storeId: storeId },
+                { buyerId: buyerId },
+                { requestType: "store" }
+            ]
+        }).sort({ _id: -1 })
+        res.status(200).send(result)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
 const deleteOffer = async (req, res) => {
     const { id } = req.params
     try {
@@ -97,4 +114,5 @@ module.exports = {
     getOfferRequest,
     deleteOffer,
     updateOfferById,
+    getOfferRequestWtihStore
 }

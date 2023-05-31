@@ -21,7 +21,8 @@ const {
   getLatestProducts,
   getProductsBySlugAndChildrenSlug,
   addProperty,
-  getAllProductsByRole
+  getAllProductsByRole,
+  getShowProductsByStoreId
 } = require("../controller/productController");
 
 //add a product
@@ -79,6 +80,9 @@ router.delete("/:id", deleteProduct);
 
 // ---------------------- dashboard Routes --------------------
 router.get("/getAllProducts/byRole", isAuth, getAllProductsByRole)
+
+// get all show products by store
+router.get("/store/show/:storeId", getShowProductsByStoreId)
 
 
 //------------- addProperty
