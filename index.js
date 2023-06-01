@@ -20,6 +20,7 @@ const categoryRoutes = require("./routes/categoryRoutes");
 const popularProductRoutes = require("./routes/popularProductRoutes");
 const topRaningProductRoutes = require("./routes/topRankingProductRoutes");
 const storeRoutes = require("./routes/storeRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
@@ -55,6 +56,7 @@ app.use("/api/cartProduct/", cartProductRoutes);
 app.use("/api/address/", addressRoutes);
 app.use("/api/voucher/", voucherRoutes);
 app.use("/api/coupon/", couponRoutes);
+app.use("/api/order/", orderRoutes);
 
 app.use("/api/popular-product", popularProductRoutes);
 app.use("/api/top-ranking-product", topRaningProductRoutes);

@@ -15,6 +15,7 @@ const addCoupon = async (req, res) => {
     }
 };
 
+
 const addAllCoupon = async (req, res) => {
     try {
         await Coupon.insertMany(req.body);
@@ -28,6 +29,80 @@ const addAllCoupon = async (req, res) => {
     }
 };
 
+
+
+// get all vouchers
+const validateCoupon = async (req, res) => {
+    try {
+        const { coupon, price } = req.params;
+
+        if (coupon) {
+            const getCoupon = await Coupon.findOne({ couponCode: coupon })
+            const currentDate = new Date();
+
+            if (getCoupon) {
+                const getPriceValidate = await Coupon.findOne({
+                    couponCode: coupon,
+                    minimumAmount: { $lte: price }, // Check if the minimum amount requirement is met
+                });
+                if (getPriceValidate) {
+                    const getEndTimeValidate = await Coupon.findOne({
+                        couponCode: coupon,
+                        endTime: { $gt: currentDate }, // Check if the coupon has not expired
+                    });
+                    if (getEndTimeValidate) {
+                        res.status(200).json({
+                            valid: true,
+                            status: "success",
+                            message: "Coupon Validation Successful",
+                            discount: getCoupon.discountPercentage,
+                        });
+                    }
+                    else {
+                        return res.status(200).json({
+                            valid: false,
+                            status: "error",
+                            message: `Coupon Time Already expired`,
+                        });
+                    }
+
+                }
+                else {
+                    return res.status(200).json({
+                        valid: false,
+                        status: "error",
+                        message: `minimum Amount ${getCoupon?.minimumAmount}`,
+                    });
+                }
+            }
+            else {
+                return res.status(200).json({
+                    valid: false,
+                    status: "error",
+                    message: `Coupon is invalid`,
+                });
+            }
+
+        }
+        else {
+            return res.status(200).json({
+                valid: false,
+                status: "error",
+                message: "Please provide a Coupon code",
+            });
+        }
+    } catch (error) {
+        res.status(400).json({
+            status: "error",
+            message: "Data couldn't be retrieved",
+            error: error.message,
+        });
+    }
+};
+
+
+
+// get all coupons
 const getAllCoupons = async (req, res) => {
     try {
         const coupons = await Coupon.find({}).sort({ _id: -1 });
@@ -102,4 +177,5 @@ module.exports = {
     getCouponById,
     updateCoupon,
     deleteCoupon,
+    validateCoupon
 };

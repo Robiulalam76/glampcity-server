@@ -10,7 +10,6 @@ const couponSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-
         couponCode: {
             type: String,
             required: true,
@@ -26,11 +25,7 @@ const couponSchema = new mongoose.Schema(
         minimumAmount: {
             type: Number,
             required: true,
-        },
-        productType: {
-            type: String,
-            required: true,
-        },
+        }
     },
     {
         timestamps: true,

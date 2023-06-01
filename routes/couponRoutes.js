@@ -7,6 +7,7 @@ const {
     getCouponById,
     updateCoupon,
     deleteCoupon,
+    validateCoupon,
 } = require('../controller/couponController');
 const { isAuth } = require('../config/auth');
 
@@ -27,5 +28,8 @@ router.put('/:id', isAuth, updateCoupon);
 
 //delete a coupon
 router.delete('/:id', isAuth, deleteCoupon);
+
+//delete a coupon
+router.get('/validation/:coupon/:price', validateCoupon);
 
 module.exports = router;

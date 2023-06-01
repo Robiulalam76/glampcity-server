@@ -6,7 +6,7 @@ const { createAddress, updateAddress, deleteAddress, getAddressById } = require(
 router.post("/", createAddress);
 
 // get address by user id
-router.get("/:id", getAddressById);
+router.get("/my-address/:userId", getAddressById);
 
 // update address by id
 router.patch("/:id", updateAddress);
