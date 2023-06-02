@@ -22,7 +22,8 @@ const {
   getProductsBySlugAndChildrenSlug,
   addProperty,
   getAllProductsByRole,
-  getShowProductsByStoreId
+  getShowProductsByStoreId,
+  getProductsByStoreId
 } = require("../controller/productController");
 
 //add a product
@@ -83,6 +84,9 @@ router.get("/getAllProducts/byRole", isAuth, getAllProductsByRole)
 
 // get all show products by store
 router.get("/store/show/:storeId", getShowProductsByStoreId)
+
+// get all show products by store
+router.get("/store/:storeId", getProductsByStoreId)
 
 
 //------------- addProperty

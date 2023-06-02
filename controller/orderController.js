@@ -90,7 +90,8 @@ const getOrdersByUserId = async (req, res) => {
 // get orders by userId
 const getOrdersByStoreId = async (req, res) => {
     try {
-        const orders = await Order.find({ store: req.params.storeId })
+        console.log(req.params.storeId);
+        const orders = await Order.find({ store: req.params.storeId }).populate("address").sort({ _id: -1 })
         res.status(200).send(orders);
     } catch (error) {
         res.status(400).json({

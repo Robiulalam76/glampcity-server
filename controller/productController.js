@@ -435,7 +435,7 @@ const getAllProductsByRole = async (req, res) => {
     const isAdmin = await Admin.findById({ _id: _id })
     const isSeller = await User.findById({ _id: _id })
 
-    // console.log(isAdmin, isSeller, _id);
+    console.log(isAdmin, isSeller, _id);
 
     if (isAdmin && isAdmin?.role === "admin") {
       const products = await Product.find({}).sort({ _id: -1 });
@@ -469,6 +469,19 @@ const getShowProductsByStoreId = async (req, res) => {
       ]
     })
     console.log(products);
+    res.send(products)
+  } catch (error) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+}
+
+// get store products
+const getProductsByStoreId = async (req, res) => {
+  try {
+    const { storeId } = req.params
+    const products = await Product.find({ storeId: storeId })
     res.send(products)
   } catch (error) {
     res.status(500).send({
@@ -519,5 +532,6 @@ module.exports = {
   // ---------------dashboard ----------------
   getAllProductsByRole,
   getShowProductsByStoreId,
+  getProductsByStoreId,
   addProperty,
 };

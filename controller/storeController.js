@@ -153,6 +153,7 @@ const updateStatus = async (req, res) => {
 const getAllStoresByRole = async (req, res) => {
   try {
     const { _id } = req.user
+    console.log(_id, "id");
     const isAdmin = await Admin.findById({ _id: _id })
     const isSeller = await User.findById({ _id: _id })
 
