@@ -53,46 +53,34 @@ const registerUser = async (req, res) => {
     role,
   } = req.body;
 
-  const findCompany = await User.findOne({ company: company });
-  console.log(req.body);
-
   try {
-    if (findCompany) {
+    const isAdded = await User.findOne({ email: email });
+    if (isAdded) {
       return res.status(200).json({
         status: "error",
-        message: { companyMessage: "Company Name Already in Use" },
-        data: req.body.company
+        message: { emailMessage: "Email Already in Use" },
+        data: req.body.email
       });
     }
     else {
-      const isAdded = await User.findOne({ email: email });
-      if (isAdded) {
-        return res.status(200).json({
-          status: "error",
-          message: { emailMessage: "Email Already in Use" },
-          data: req.body.email
-        });
-      }
-      else {
-        const newUser = new User({
-          name,
-          email,
-          company,
-          country,
-          phone,
-          role,
-          password: bcrypt.hashSync(password),
-        });
-        newUser.save();
-        // const token = signInToken({ name, email, password: bcrypt.hashSync(password) });
-        res.send({
-          success: true,
-          _id: newUser._id,
-          name: newUser.name,
-          email: newUser.email,
-          message: "Please Login Now!",
-        });
-      }
+      const newUser = new User({
+        name,
+        email,
+        company,
+        country,
+        phone,
+        role,
+        password: bcrypt.hashSync(password),
+      });
+      newUser.save();
+      // const token = signInToken({ name, email, password: bcrypt.hashSync(password) });
+      res.send({
+        success: true,
+        _id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        message: "Please Login Now!",
+      });
     }
 
   } catch (error) {

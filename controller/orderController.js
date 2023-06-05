@@ -103,15 +103,31 @@ const getOrdersByStoreId = async (req, res) => {
 }
 
 // get orders by userId
+const getOrderByOrderId = async (req, res) => {
+    try {
+        console.log(req.params.orderId);
+        const order = await Order.findOne({ _id: req.params.orderId }).populate("address")
+        res.status(200).send(order);
+    } catch (error) {
+        res.status(400).json({
+            status: "error",
+            message: "Data couldn't be retrieved",
+            error: error.message,
+        });
+    }
+}
+
+// get orders by userId
 const updateShippingStatusByStoreAndOrderId = async (req, res) => {
     try {
+        console.log(req.body);
         const result = await Order.findOneAndUpdate({
             $and: [
                 { store: req.params.storeId },
                 { _id: req.params.orderId }
             ]
         },
-            { $set: { shippingStatus: req.body.shippingStatus } },
+            { $set: req.body },
             { new: true }
         );
         res.status(200).json({
@@ -132,6 +148,7 @@ const updateShippingStatusByStoreAndOrderId = async (req, res) => {
 module.exports = {
     createOrder,
     getOrdersByUserId,
+    getOrderByOrderId,
     getOrdersByStoreId,
     updateShippingStatusByStoreAndOrderId,
 }
