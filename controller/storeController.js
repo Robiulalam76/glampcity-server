@@ -9,23 +9,58 @@ const User = require("../models/User");
 // @route POST /api/orders
 // @access Private
 const addStore = async (req, res) => {
-  const { user, name, image, description, address } = req.body;
-  // console.log(req.body);
-  const store = new Store({
-    // owner: owner ? owner : req.user._id,
-    // owner: "6341029b8e67f93114d8550a",
-    name,
-    image,
-    username: name?.replaceAll(' ', '').toLowerCase(),
-    description,
-    address,
-  });
-  const createdStore = await store.save();
-  res.status(201).json(createdStore);
+  try {
+    console.log(req.body);
+    const store = new Store({
+      name: req.body.name,
+      logo: req.body.logo,
+      images: req.body.images,
+      username: req.body.username?.replaceAll(' ', '').toLowerCase(),
+      userId: req.body.userId,
+      street: req.body.street,
+      city: req.body.city,
+      country: req.body.country,
+      postalCode: req.body.postalCode,
+      email: req.body.email,
+      description: req.body.description
+    });
+    const createdStore = await store.save();
+    res.status(201).json({
+      message: "Store Add Successfull",
+      result: createdStore
+    });
 
-  res.status(201).send({
-    message: 'only seller and Admit can be added'
-  })
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: error.message
+    });
+  }
+};
+
+
+// update store info
+const updateStoreByStoreId = async (req, res) => {
+  try {
+    const { storeId } = req.params;
+    console.log(storeId);
+    const result = await Store.updateOne(
+      { _id: storeId },
+      { $set: req.body },
+      { runValidators: true }
+    );
+    res.status(200).json({
+      status: "success",
+      message: "Update successfully",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "error",
+      message: "upadate couldn't success",
+      error: error.message,
+    });
+  }
 };
 
 // @desc Get all orders
@@ -105,7 +140,7 @@ const deleteSingleStore = async (req, res) => {
 };
 
 const getVerifiedStores = async (req, res) => {
-  const store = await Store.find({ verified: true });
+  const store = await Store.find({ verified: true, status: "Show" });
 
   if (!store) {
     res.status(200);
@@ -201,6 +236,7 @@ module.exports = {
   addStoreBySeller,
   deleteSingleStore,
   getVerifiedStores,
+  updateStoreByStoreId,
 
   updateStatus,
   getAllStoresByRole,

@@ -12,6 +12,7 @@ const {
   getAllStoresByRole,
   addProperty,
   updateStatus,
+  updateStoreByStoreId,
 } = require("../controller/storeController");
 const { isAuth } = require("../config/auth");
 // const { protect } = require("../middleware/authMiddleware");
@@ -26,6 +27,7 @@ router.delete("/:id", deleteSingleStore);
 // router.route('/:id/pay').put(protect, updateOrderToPaid)
 // router.route('/:id/deliver').put(protect, admin, updateOrderToDelivered);
 
+router.patch("/update/:storeId", updateStoreByStoreId)
 
 router.put("/status/:id", isAuth, updateStatus)
 router.get("/getAllStores/byRole", isAuth, getAllStoresByRole)
