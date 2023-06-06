@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['seller', 'buyer', 'both'],
+      enum: ['seller', 'buyer'],
       default: 'seller'
     },
     password: {
@@ -69,7 +69,7 @@ const userSchema = new mongoose.Schema(
     },
     createWith: {
       type: String,
-      required: true
+      required: false
     }
   },
   {
